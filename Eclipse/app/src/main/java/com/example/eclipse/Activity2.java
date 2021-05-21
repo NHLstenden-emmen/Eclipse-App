@@ -7,29 +7,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class Activity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_2);
 
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button2);
 
-        button.setText("Naar activity 2");
-
+        button.setText("Naar activity 1");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity2();
+                openActivity1();
             }
         });
     }
 
 
 
-    public void openActivity2(){
-        Intent intent = new Intent(this, Activity2.class);
+    public void openActivity1(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
