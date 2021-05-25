@@ -16,20 +16,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
 
-        button.setText("Naar activity 2");
+        button.setText("Naar HomeScreen");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
+            public void onClick(View v) { openHomescreen();}
         });
     }
 
 
 
-    public void openActivity2(){
-        Intent intent = new Intent(this, Activity2.class);
+    public void openHomescreen(){
+        Intent intent = new Intent(this, Homescreen.class);
         startActivity(intent);
     }
 }
