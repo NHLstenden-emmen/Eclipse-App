@@ -14,14 +14,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
+        Button button_2 = findViewById(R.id.btn_2);
+        Button button_Mirror = findViewById(R.id.btn_Mirror);
 
-        button.setText("Naar activity 2");
+        button_2.setText("Naar activity 2");
+        button_Mirror.setText("Naar Mirror");
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity2();
+            }
+        });
+
+        button_Mirror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityMirror();
             }
         });
     }
@@ -30,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openActivity2(){
         Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
+    }
+
+    public void openActivityMirror(){
+        Intent intent = new Intent(this, MirrorActivity.class);
         startActivity(intent);
     }
 }
