@@ -7,40 +7,47 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.eclipse.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button_2 = findViewById(R.id.btn_2);
-        Button button_Mirror = findViewById(R.id.btn_Mirror);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        button_2.setText("Naar activity 2");
-        button_Mirror.setText("Naar Mirror");
+        binding.btn2.setText("Go to activity 2");
+        binding.btnMirror.setText("Go to Mirror");
 
-        button_2.setOnClickListener(new View.OnClickListener() {
+        binding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity2();
             }
         });
 
-        button_Mirror.setOnClickListener(new View.OnClickListener() {
+        binding.btnMirror.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivityMirror();
             }
         });
+
+
+
     }
-
-
 
     public void openActivity2(){
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
     }
+
+
 
     public void openActivityMirror(){
         Intent intent = new Intent(this, MirrorActivity.class);

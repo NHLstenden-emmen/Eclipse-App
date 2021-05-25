@@ -40,7 +40,7 @@ public class MirrorActivity extends AppCompatActivity {
                 binding.fabMirrorEdit.hide();
                 Snackbar.make(view, "Edit mirror", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
+                navController.navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
 
 
             }

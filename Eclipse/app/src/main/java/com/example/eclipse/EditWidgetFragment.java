@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.eclipse.databinding.FragmentSecondBinding;
+import com.example.eclipse.databinding.FragmentEditWidgetsBinding;
 
 public class EditWidgetFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private FragmentEditWidgetsBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class EditWidgetFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentEditWidgetsBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -33,7 +33,7 @@ public class EditWidgetFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(EditWidgetFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                        .navigate(R.id.action_editWidgetFragment_to_repositionWidgetFragment);
             }
         });
     }
