@@ -28,6 +28,20 @@ public class Homescreen extends AppCompatActivity {
         }else{
             resultTextVieuw.setText("Unable to find any mirror's");
         }
+
+        Button temporaryButton = findViewById(R.id.addMirror);
+
+        temporaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMirror();
+            }
+        });
+    }
+
+    public void openMirror(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
     }
 
     @Override
