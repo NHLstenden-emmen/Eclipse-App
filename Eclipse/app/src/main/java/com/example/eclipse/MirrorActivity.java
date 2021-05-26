@@ -33,7 +33,7 @@ public class MirrorActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_mirror);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
+        binding.fabMirrorEdit.show();
         binding.fabMirrorEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

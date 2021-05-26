@@ -35,6 +35,7 @@ public class RepositionWidgetFragment extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
                         .navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
+
             }
         });
     }
