@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btn2.setText("Go to activity 2");
+        binding.btn2.setText("Go to Homescreen");
         binding.btnMirror.setText("Go to Mirror");
 
         binding.btn2.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openActivity2(){
-        Intent intent = new Intent(this, Activity2.class);
+    public void openHomescreen(){
+        Intent intent = new Intent(this, Homescreen.class);
         startActivity(intent);
     }
 
