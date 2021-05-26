@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/repositionWidgetFragment">
+    <fragment
+        android:id="@+id/editWidgetFragment"
+        android:name="com.example.eclipse.EditWidgetFragment"
+        android:label="fragment_edit_widgets"
+        tools:layout="@layout/fragment_edit_widgets" >
+        <action
+            android:id="@+id/action_editWidgetFragment_to_repositionWidgetFragment"
+            app:destination="@id/repositionWidgetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repositionWidgetFragment"
+        android:name="com.example.eclipse.RepositionWidgetFragment"
+        android:label="fragment_reposition_widget"
+        tools:layout="@layout/fragment_reposition_widget" >
+        <action
+            android:id="@+id/action_repositionWidgetFragment_to_editWidgetFragment"
+            app:destination="@id/editWidgetFragment" />
+    </fragment>
+</navigation>

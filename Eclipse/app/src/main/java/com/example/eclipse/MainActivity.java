@@ -7,27 +7,49 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.eclipse.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        button.setText("Naar HomeScreen");
+        binding.btn2.setText("Go to activity 2");
+        binding.btnMirror.setText("Go to Mirror");
 
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openHomescreen();}
         });
+
+        binding.btnMirror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityMirror();
+            }
+        });
+
+
+
+
+    }
+
+    public void openActivity2(){
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
     }
 
 
 
-    public void openHomescreen(){
-        Intent intent = new Intent(this, Homescreen.class);
+    public void openActivityMirror(){
+        Intent intent = new Intent(this, MirrorActivity.class);
         startActivity(intent);
     }
 }
