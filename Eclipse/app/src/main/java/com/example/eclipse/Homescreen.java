@@ -1,20 +1,16 @@
 package com.example.eclipse;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
 
 public class Homescreen extends AppCompatActivity {
+
+    private AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +24,7 @@ public class Homescreen extends AppCompatActivity {
         }else{
             resultTextVieuw.setText("Unable to find any mirror's");
         }
+
     }
 
     @Override
@@ -41,5 +38,8 @@ public class Homescreen extends AppCompatActivity {
         return true;
     }
 
+    public void openSettings(){
+
+    }
 
 }

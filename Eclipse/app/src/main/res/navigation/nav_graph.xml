@@ -21,5 +21,12 @@
         <action
             android:id="@+id/action_repositionWidgetFragment_to_editWidgetFragment"
             app:destination="@id/editWidgetFragment" />
+        <action
+            android:id="@+id/action_repositionWidgetFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.eclipse.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

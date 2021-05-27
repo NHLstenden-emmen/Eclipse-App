@@ -34,7 +34,8 @@ public class RepositionWidgetFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
-                        .navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
+                        //.navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
+                        .navigate(R.id.action_repositionWidgetFragment_to_settingsFragment);
 
             }
         });
