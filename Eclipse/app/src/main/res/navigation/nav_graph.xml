@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mirrorlistFragment"
         android:name="com.example.eclipse.MirrorlistFragment"
-        android:label="fragment_mirrorlist"
+        android:label="Eclipse"
         tools:layout="@layout/fragment_mirrorlist" >
         <action
             android:id="@+id/action_mirrorlistFragment_to_settingsFragment"
@@ -25,25 +25,29 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.eclipse.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Mirror settings" />
     <fragment
         android:id="@+id/accountSettingsFragment"
         android:name="com.example.eclipse.AccountSettingsFragment"
-        android:label="AccountSettingsFragment" />
+        android:label="Account settings" />
     <fragment
         android:id="@+id/addMirrorFragment"
         android:name="com.example.eclipse.AddMirrorFragment"
-        android:label="fragment_add_mirror"
-        tools:layout="@layout/fragment_add_mirror" />
+        android:label="Setup new mirror"
+        tools:layout="@layout/fragment_add_mirror" >
+        <action
+            android:id="@+id/action_addMirrorFragment_to_mirrorlistFragment"
+            app:destination="@id/mirrorlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editWidgetFragment"
         android:name="com.example.eclipse.EditWidgetFragment"
-        android:label="fragment_edit_widgets"
+        android:label="Change (change to widget name) settings"
         tools:layout="@layout/fragment_edit_widgets" />
     <fragment
         android:id="@+id/repositionWidgetFragment"
         android:name="com.example.eclipse.RepositionWidgetFragment"
-        android:label="fragment_reposition_widget"
+        android:label="Change to mirror name"
         tools:layout="@layout/fragment_reposition_widget" >
         <action
             android:id="@+id/action_repositionWidgetFragment_to_editWidgetFragment"

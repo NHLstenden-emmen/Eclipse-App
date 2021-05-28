@@ -29,6 +29,31 @@ public class MirrorlistFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        int amountMirrors = 1; //Read amount of mirrors from database
+        if (amountMirrors < 1) {
+            binding.SearchResultText.setText(R.string.no_mirrors_connected);
+            binding.mirrorCard.setVisibility(View.GONE);
+        } else {
+            binding.mirrorName.setText("Simchaja"); // Read mirror name from database
+
+            binding.mirrorCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NavHostFragment.findNavController(MirrorlistFragment.this)
+                            .navigate(R.id.action_mirrorlistFragment_to_repositionWidgetFragment);
+                }
+            });
+
+            binding.mirrorSettings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NavHostFragment.findNavController(MirrorlistFragment.this)
+                            .navigate(R.id.action_mirrorlistFragment_to_settingsFragment);
+                }
+            });
+
+        } // close mirrors if statement
+
         binding.btnAddMirror.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,22 +67,6 @@ public class MirrorlistFragment extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(MirrorlistFragment.this)
                         .navigate(R.id.action_mirrorlistFragment_to_accountSettingsFragment);
-            }
-        });
-
-        binding.mirrorSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(MirrorlistFragment.this)
-                        .navigate(R.id.action_mirrorlistFragment_to_settingsFragment);
-            }
-        });
-
-        binding.mirrorCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(MirrorlistFragment.this)
-                        .navigate(R.id.action_mirrorlistFragment_to_repositionWidgetFragment);
             }
         });
 
