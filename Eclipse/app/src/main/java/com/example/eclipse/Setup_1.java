@@ -7,25 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+public class Setup_1 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_setup1);
 
-        Button temporaryButton = findViewById(R.id.loginButton);
+        Button temporaryButton = findViewById(R.id.nextButton);
 
         temporaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSetup();
+                openNext();
             }
         });
     }
 
-    public void openSetup(){
-        Intent intent = new Intent(this, Setup_1.class);
+    public void openNext(){
+        Intent intent = new Intent(this, Setup_2.class);
         startActivity(intent);
     }
 }
