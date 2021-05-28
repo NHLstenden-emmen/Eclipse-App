@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) { openHomescreen();}
         });
 
-
+        binding.btnMirror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openSetup();}
+        });
 
 
 
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void openSetup(){
+        Intent intent = new Intent(this, Setup_1.class);
+        startActivity(intent);
+    }
 
 }
