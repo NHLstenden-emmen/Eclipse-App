@@ -21,17 +21,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btn2.setText("Go to Homescreen");
-        binding.btnMirror.setText("Go to Mirror");
 
         binding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openHomescreen();}
         });
 
-        binding.btnMirror.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openSetup();}
-        });
+
 
 
 
