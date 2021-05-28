@@ -30,12 +30,22 @@ public class RepositionWidgetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.btnMirrorSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
                         //.navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
                         .navigate(R.id.action_repositionWidgetFragment_to_settingsFragment);
+
+            }
+        });
+
+        binding.btnEditWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(RepositionWidgetFragment.this)
+                        //.navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
+                        .navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
 
             }
         });

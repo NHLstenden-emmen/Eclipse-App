@@ -9,20 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eclipse">
-        <activity android:name=".Setup_4"></activity>
+        <activity
+            android:name=".Homescreen"
+            android:label="@string/title_activity_homescreen"
+            android:theme="@style/Theme.Eclipse.NoActionBar"></activity>
+        <activity android:name=".Setup_4" />
         <activity android:name=".Setup_3" />
         <activity android:name=".Setup_2" />
         <activity android:name=".Setup_1" />
         <activity
             android:name=".Login"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Homescreen"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MirrorActivity"
-            android:label="@string/title_activity_mirror"
-            android:theme="@style/Theme.Eclipse.NoActionBar" />
         <activity android:name=".Activity2" />
         <activity android:name=".MainActivity">
             <intent-filter>

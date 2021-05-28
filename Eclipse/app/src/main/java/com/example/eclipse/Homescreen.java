@@ -1,59 +1,55 @@
 package com.example.eclipse;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.example.eclipse.databinding.ActivityHomescreenBinding;
 
 public class Homescreen extends AppCompatActivity {
+
+    private AppBarConfiguration appBarConfiguration;
+    private ActivityHomescreenBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homescreen);
 
-        TextView resultTextVieuw = findViewById(R.id.SearchResultText);
+        binding = ActivityHomescreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        if(findMirrors()){
-            resultTextVieuw.setText("Found devices");
-        }else{
-            resultTextVieuw.setText("Unable to find any mirror's");
-        }
+        setSupportActionBar(binding.toolbar);
 
-        Button temporaryButton = findViewById(R.id.addMirror);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_homescreen);
+        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        temporaryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMirror();
-            }
-        });
-    }
-
-    public void openMirror(){
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+//        binding.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.homescreen_bar, menu);
-        return true;
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_homescreen);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
-    public boolean findMirrors(){
-        return true;
-    }
 
+    //@Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.homescreen_bar, menu);
+//        return true;
+//    }
 
 }

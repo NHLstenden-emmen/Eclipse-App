@@ -2,17 +2,44 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/repositionWidgetFragment">
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/mirrorlistFragment">
+    <fragment
+        android:id="@+id/mirrorlistFragment"
+        android:name="com.example.eclipse.MirrorlistFragment"
+        android:label="fragment_mirrorlist"
+        tools:layout="@layout/fragment_mirrorlist" >
+        <action
+            android:id="@+id/action_mirrorlistFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mirrorlistFragment_to_accountSettingsFragment"
+            app:destination="@id/accountSettingsFragment" />
+        <action
+            android:id="@+id/action_mirrorlistFragment_to_addMirrorFragment"
+            app:destination="@id/addMirrorFragment" />
+        <action
+            android:id="@+id/action_mirrorlistFragment_to_repositionWidgetFragment"
+            app:destination="@id/repositionWidgetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.eclipse.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="com.example.eclipse.AccountSettingsFragment"
+        android:label="AccountSettingsFragment" />
+    <fragment
+        android:id="@+id/addMirrorFragment"
+        android:name="com.example.eclipse.AddMirrorFragment"
+        android:label="fragment_add_mirror"
+        tools:layout="@layout/fragment_add_mirror" />
     <fragment
         android:id="@+id/editWidgetFragment"
         android:name="com.example.eclipse.EditWidgetFragment"
         android:label="fragment_edit_widgets"
-        tools:layout="@layout/fragment_edit_widgets" >
-        <action
-            android:id="@+id/action_editWidgetFragment_to_repositionWidgetFragment"
-            app:destination="@id/repositionWidgetFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_edit_widgets" />
     <fragment
         android:id="@+id/repositionWidgetFragment"
         android:name="com.example.eclipse.RepositionWidgetFragment"
@@ -25,8 +52,4 @@
             android:id="@+id/action_repositionWidgetFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.eclipse.SettingsFragment"
-        android:label="SettingsFragment" />
 </navigation>
