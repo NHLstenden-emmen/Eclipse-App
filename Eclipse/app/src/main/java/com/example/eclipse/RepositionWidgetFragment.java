@@ -1,5 +1,6 @@
 package com.example.eclipse;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +39,13 @@ public class RepositionWidgetFragment extends Fragment {
 
             }
         });
+
     }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-
 }
