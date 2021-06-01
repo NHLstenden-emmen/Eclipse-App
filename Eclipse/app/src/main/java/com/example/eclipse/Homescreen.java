@@ -1,7 +1,12 @@
 package com.example.eclipse;
 
 import android.os.Bundle;
-
+import androidx.annotation.NonNull;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +19,7 @@ public class Homescreen extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityHomescreenBinding binding;
+    private WidgetHandler widgetHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class Homescreen extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        widgetHandler = new WidgetHandler(this);
     }
 
     @Override
@@ -42,6 +49,14 @@ public class Homescreen extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_homescreen);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void cardClick(View view) {
+        widgetHandler.click(view);
+    }
+
+    public ImageView getImageViewById(int id){
+        return findViewById(id);
     }
 
 
