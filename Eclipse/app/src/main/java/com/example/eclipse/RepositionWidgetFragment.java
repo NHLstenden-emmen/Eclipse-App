@@ -1,6 +1,5 @@
 package com.example.eclipse;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +30,7 @@ public class RepositionWidgetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+
         binding.btnMirrorSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +41,7 @@ public class RepositionWidgetFragment extends Fragment {
             }
         });
 
-        binding.btnEditWidget.setOnClickListener(new View.OnClickListener() {
+        binding.btnMirrorSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
