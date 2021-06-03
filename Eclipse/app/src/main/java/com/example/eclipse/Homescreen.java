@@ -7,7 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -19,7 +22,7 @@ public class Homescreen extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityHomescreenBinding binding;
-    private WidgetHandler widgetHandler;
+    public WidgetHandler widgetHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,24 @@ public class Homescreen extends AppCompatActivity {
 
     public ImageView getImageViewById(int id){
         return findViewById(id);
+    }
+    public CardView getCardViewById(int id) {return findViewById(id);}
+    public Switch getSwitchById(int id) {return findViewById(id);}
+
+
+    public void Settings_Switch(View view) {
+        Switch SettingsSwitch = (Switch) findViewById(R.id.SettingsSwitch);
+        System.out.println("Checking for switch");
+        if(!SettingsSwitch.isChecked()){
+            //uncheck action
+            System.out.println("Disabeling Settings");
+            widgetHandler.removeFromArray("Settings");
+        }else{
+            //check action
+            if(widgetHandler.getFirstEmpty() != -1){
+                widgetHandler.widgets.set(widgetHandler.getFirstEmpty(), "Settings");
+            }
+        }
     }
 
 

@@ -55,5 +55,13 @@
         <action
             android:id="@+id/action_repositionWidgetFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_repositionWidgetFragment_to_addWidgetFragment"
+            app:destination="@id/addWidgetFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addWidgetFragment"
+        android:name="com.example.eclipse.AddWidgetFragment"
+        android:label="fragment_add_widget"
+        tools:layout="@layout/fragment_add_widget" />
 </navigation>

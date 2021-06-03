@@ -1,44 +1,40 @@
 package com.example.eclipse;
+import android.graphics.Color;
 import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class WidgetHandler {
 
-    boolean loaded = false;
     ArrayList<String> widgets = getWidgetsFromDatabase();
     Homescreen homescreen;
-    int selected = 0;
+    int selected = -1;
 
     public WidgetHandler(Homescreen homescreen){
         this.homescreen = homescreen;
     }
 
     public void click(View sender){
-        if(this.loaded == false){
-            loadImages();
-            this.loaded = true;
-            return;
-        }
 
-        System.out.println("Selected set to " + getIndexByWidget(sender.getId()));
-
-        if(selected == 0){
+        if(selected == -1){
+            System.out.println(getIndexByWidget(sender.getId()) + "Is now selected");
             selected = getIndexByWidget(sender.getId()) - 1;
-            System.out.println("Selected set to " + getIndexByWidget(sender.getId()));
+            homescreen.getCardViewById(getWidgetByIndex(selected + 1)).setAlpha(0.2f);
         }else{
+            System.out.println(getIndexByWidget(sender.getId()) + "Is now selected as 2");
             int selected2 = getIndexByWidget(sender.getId()) - 1;
-            System.out.println(selected + " = " + widgets.get(selected) + "- " + selected2 + " = " + widgets.get(selected2));
             String temp = widgets.get(selected);
             widgets.set(selected, widgets.get(selected2));
             widgets.set(selected2, temp);
             loadImages();
-            selected = 0;
-            System.out.println(selected + " = " + widgets.get(selected) + "- " + selected2 + " = " + widgets.get(selected2));
-
+            homescreen.getCardViewById(getWidgetByIndex(selected + 1)).setAlpha(1.0f);
+            selected = -1;
         }
+
+        System.out.println(getIndexByWidget(sender.getId()) + "Is now selected");
     }
 
     public void loadImages(){
@@ -53,16 +49,12 @@ public class WidgetHandler {
         }
     }
 
-    public void setAlpha(View sender, float alpha){
-        sender.setAlpha(alpha);
-    }
-
     public ArrayList<String> getWidgetsFromDatabase(){
         ArrayList<String> widgets = new ArrayList<String>();
-        widgets.add("Settings");
-        widgets.add("Card");
-        widgets.add("Search");
-        widgets.add("Card");
+        widgets.add("");
+        widgets.add("");
+        widgets.add("");
+        widgets.add("");
         widgets.add("");
         widgets.add("");
         widgets.add("");
@@ -89,6 +81,35 @@ public class WidgetHandler {
         widgets.add("");
         return widgets;
     }
+
+    public int getFirstEmpty(){
+        int count = 0;
+        for(String widget : widgets){
+            if(widget == ""){
+                return count;
+            }
+            count++;
+        }
+        return -1;
+    }
+
+    public boolean arrayContains(String widget){
+        for(String i : widgets){
+            if(i == widget){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeFromArray(String widget){
+        for(int i = 0; i <= 27; i++){
+            if(widget == widgets.get(i)){
+                widgets.set(i, "");
+            }
+        }
+    }
+
 
     public int getImgByWidget(String widget){
         switch (widget){

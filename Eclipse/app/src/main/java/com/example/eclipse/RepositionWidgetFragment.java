@@ -30,6 +30,7 @@ public class RepositionWidgetFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ((Homescreen)getActivity()).widgetHandler.loadImages();
 
         binding.btnMirrorSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,18 +42,17 @@ public class RepositionWidgetFragment extends Fragment {
             }
         });
 
-        binding.btnEditWidget.setOnClickListener(new View.OnClickListener() {
+      binding.btnAddWidgets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
                         //.navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
-                        .navigate(R.id.action_repositionWidgetFragment_to_editWidgetFragment);
+                        .navigate(R.id.action_repositionWidgetFragment_to_addWidgetFragment);
 
             }
         });
 
     }
-
 
     @Override
     public void onDestroyView() {
