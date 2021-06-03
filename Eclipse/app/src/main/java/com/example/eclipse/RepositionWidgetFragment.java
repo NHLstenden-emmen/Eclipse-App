@@ -44,8 +44,6 @@ public class RepositionWidgetFragment extends Fragment {
 
       binding.btnAddWidgets.setOnClickListener(new View.OnClickListener() {
 
-        binding.btnMirrorSettings.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RepositionWidgetFragment.this)
