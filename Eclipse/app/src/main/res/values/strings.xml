@@ -42,6 +42,12 @@
     <!-- New mirror -->
     <string name="scanning_network">Scanning network</string>
     <string name="no_mirrors_found">No mirrors found. \nPlease check if mirror is powered on.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Mirror Settings -->
+    <string name="display_header">Display</string>
+    <string name="display_title">Display on timer</string>
+    <string name="timer_summary_off">Display always on</string>
+    <string name="timer_summary_on">Display is on for set amount of time</string>
+    <string name="timer_title">Timer</string>
+
 </resources>
