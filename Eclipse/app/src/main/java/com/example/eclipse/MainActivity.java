@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { openHomescreen();}
         });
-
-
-
-
     }
 
     public void openHomescreen(){
@@ -41,5 +37,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Setup_1.class);
         startActivity(intent);
     }
-
 }

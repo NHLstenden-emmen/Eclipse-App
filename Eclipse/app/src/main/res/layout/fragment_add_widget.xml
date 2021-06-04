@@ -3,13 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="Settings_Switch"
     tools:context=".AddWidgetFragment">
 
     <Switch
         android:id="@+id/SettingsSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="Settings_Switch"
+        android:onClick="Widget_Switch"
+        android:layout_marginVertical="0dp"
         android:text="Settings" />
+
+    <Switch
+        android:id="@+id/cardSWitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Widget_Switch"
+        android:layout_marginVertical="30dp"
+        android:text="Card" />
+
+    <Switch
+        android:id="@+id/searchSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Widget_Switch"
+        android:layout_marginVertical="60dp"
+        android:text="Search" />
+
 </FrameLayout>

@@ -63,19 +63,31 @@ public class Homescreen extends AppCompatActivity {
     }
     public CardView getCardViewById(int id) {return findViewById(id);}
     public Switch getSwitchById(int id) {return findViewById(id);}
+    public View getViewById(int id) {return findViewById(id);}
 
 
-    public void Settings_Switch(View view) {
+ /*   public void Settings_Switch(View view) {
         Switch SettingsSwitch = (Switch) findViewById(R.id.SettingsSwitch);
-        System.out.println("Checking for switch");
         if(!SettingsSwitch.isChecked()){
             //uncheck action
-            System.out.println("Disabeling Settings");
             widgetHandler.removeFromArray("Settings");
         }else{
             //check action
             if(widgetHandler.getFirstEmpty() != -1){
                 widgetHandler.widgets.set(widgetHandler.getFirstEmpty(), "Settings");
+            }
+        }
+    } */
+
+    public void Widget_Switch(View view) {
+        Switch widgetSwitch = (Switch)view;
+        if(!widgetSwitch.isChecked()){
+            //uncheck action
+            widgetHandler.removeFromArray(widgetSwitch.getText().toString());
+        }else{
+            //check action
+            if(widgetHandler.getFirstEmpty() != -1){
+                widgetHandler.widgets.set(widgetHandler.getFirstEmpty(), widgetSwitch.getText().toString());
             }
         }
     }

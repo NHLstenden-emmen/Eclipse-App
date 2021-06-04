@@ -95,7 +95,7 @@ public class WidgetHandler {
 
     public boolean arrayContains(String widget){
         for(String i : widgets){
-            if(i == widget){
+            if(i.equals(widget)){
                 return true;
             }
         }
@@ -104,7 +104,7 @@ public class WidgetHandler {
 
     public void removeFromArray(String widget){
         for(int i = 0; i <= 27; i++){
-            if(widget == widgets.get(i)){
+            if(widget.equals(widgets.get(i))){
                 widgets.set(i, "");
             }
         }
