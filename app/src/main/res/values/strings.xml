@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Eclipse</string>
+
+    <string name="next">NEXT</string>
+    <string name="back">PREV</string>
+    <string name="start">FINISH</string>
+</resources>

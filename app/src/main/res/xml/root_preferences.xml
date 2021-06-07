@@ -1,0 +1,32 @@
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+            android:title="Widgets">
+        <Preference
+                app:key="placement"
+                app:title="Placement"
+                android:summary="Manage your widgets"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+            app:title="Mirror">
+        <Preference
+                app:key="serialnmbr"
+                app:title="SERIALNUMBER"
+                android:enabled="false"
+                android:summary="Serial No."
+                /><!-- DEBUG -->
+        <Preference
+                app:key="ip"
+                app:title=""
+                android:enabled="false"
+                android:summary="IP Address"
+                /><!-- DEBUG -->
+        <CheckBoxPreference
+                android:defaultValue="true"
+                android:title="Timeout"
+                android:summary="Automatically time out the screen after no motion has been detected"
+                android:key="timeout"/>
+    </PreferenceCategory>
+</PreferenceScreen>
