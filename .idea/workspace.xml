@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -34,15 +33,9 @@
     <list default="true" id="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/login.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/SetupAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/SetupAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" afterDir="false" />
@@ -56,7 +49,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8N80WD2NL]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\roanm\.android\avd\Pixel_3a_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -102,8 +95,8 @@
         <option value="navigationResourceFile" />
         <option value="resourceFile" />
         <option value="valueResourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -136,16 +129,12 @@
     <key name="android.template.2107498091">
       <recent name="INF1D.eclipse.settings" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="INF1D.eclipse" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="INF1D.eclipse.setup.fragments" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\simch\Documents\Eclipse-App\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\rhass\Desktop\Eclipse\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\rhass\Desktop\Eclipse\app\src\main\res\drawable" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="INF1D.eclipse" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -297,49 +286,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="349" y="167" key="AndroidCreateResourceFileDialog" timestamp="1623155436417">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="349" y="167" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1623155436417" />
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom" timestamp="1623179637874">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1623160419782" />
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623179637874" />
-    <state width="1877" height="239" key="GridCell.Tab.0.center" timestamp="1623179637874">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1623160419782" />
-    <state width="1877" height="239" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623179637874" />
-    <state width="1877" height="239" key="GridCell.Tab.0.left" timestamp="1623179637874">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1623160419782" />
-    <state width="1877" height="239" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623179637874" />
-    <state width="1877" height="239" key="GridCell.Tab.0.right" timestamp="1623179637874">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1623160419782" />
-    <state width="1877" height="239" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623179637874" />
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1623159026455">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1623159026455" />
-    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1623159026455">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1623159026455" />
-    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1623159026455">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1623159026455" />
-    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1623159026455">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1623159026455" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
