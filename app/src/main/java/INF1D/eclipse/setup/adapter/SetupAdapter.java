@@ -1,5 +1,6 @@
 package INF1D.eclipse.setup.adapter;
 
+import INF1D.eclipse.setup.fragments.loginFragment;
 import INF1D.eclipse.setup.fragments.mirrorselectFragment;
 import INF1D.eclipse.setup.fragments.succesFragment;
 import INF1D.eclipse.setup.fragments.welcomeFragment;
@@ -14,7 +15,7 @@ public class SetupAdapter extends FragmentStateAdapter {
 
     public SetupAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        NUM_PAGES = 5;
+        NUM_PAGES = 6;
     }
 
     @NonNull
@@ -25,10 +26,12 @@ public class SetupAdapter extends FragmentStateAdapter {
             case 0:
                 return new welcomeFragment();
             case 1:
-                return new mirrorselectFragment();
+                return new loginFragment();
             case 2:
-                return new wifiselectFragment();
+                return new mirrorselectFragment();
             case 3:
+                return new wifiselectFragment();
+            case 4:
                 return new succesFragment();
         }
     }
