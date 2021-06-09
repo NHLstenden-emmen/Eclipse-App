@@ -30,9 +30,19 @@ public class SetupActivity extends AppCompatActivity {
     private int getNextItem() {
         return viewPager.getCurrentItem() + 1;
     }
+    private int getPrevItem() { return viewPager.getCurrentItem() - 1; }
 
     public void nextButton(View view) {
         int current = getNextItem();
+        if (current < Objects.requireNonNull(viewPager.getAdapter()).getItemCount() -1) {
+            viewPager.setCurrentItem(current);
+        } else {
+            finish();
+        }
+    }
+
+    public void prevButton(View view) {
+        int current = getPrevItem();
         if (current < Objects.requireNonNull(viewPager.getAdapter()).getItemCount() -1) {
             viewPager.setCurrentItem(current);
         } else {

@@ -129,6 +129,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/prevButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="17dp"
+            android:background="@drawable/circle"
+            android:drawable="@drawable/ic_next"
+            android:onClick="nextButton"
+            android:src="@drawable/ic_next"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="120dp"
@@ -146,7 +160,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_selected" />
+                app:srcCompat="@drawable/setup_unselected" />
 
             <ImageView
                 android:id="@+id/selection2"
@@ -154,10 +168,10 @@
                 android:layout_height="20dp"
                 android:layout_marginTop="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.33"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_unselected" />
+                app:srcCompat="@drawable/setup_selected" />
 
             <ImageView
                 android:id="@+id/selection3"
@@ -165,13 +179,23 @@
                 android:layout_height="20dp"
                 android:layout_marginTop="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.66"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/setup_unselected" />
 
             <ImageView
                 android:id="@+id/selection4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.75"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/setup_unselected" />
+
+            <ImageView
+                android:id="@+id/selection5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="25dp"

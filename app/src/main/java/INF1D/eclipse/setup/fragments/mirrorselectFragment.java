@@ -23,5 +23,7 @@ public class mirrorselectFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Objects.requireNonNull(getView()).findViewById(R.id.nextButton).setOnClickListener(v -> ((SetupActivity) Objects.requireNonNull(getActivity())).nextButton(view));
+        Objects.requireNonNull(getView()).findViewById(R.id.prevButton).setOnClickListener(v -> ((SetupActivity) Objects.requireNonNull(getActivity())).prevButton(view));
+
     }
 }

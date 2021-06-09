@@ -32,8 +32,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" name="Default Changelist" comment="Start JSON Parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +44,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8N80WD2NL]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\roanm\.android\avd\Pixel_3a_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

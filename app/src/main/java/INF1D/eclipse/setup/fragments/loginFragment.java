@@ -49,7 +49,7 @@ public class loginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         requireView().findViewById(R.id.nextButton).setOnClickListener(v -> ((SetupActivity) requireActivity()).nextButton(view));
-
+        requireView().findViewById(R.id.prevButton).setOnClickListener(v -> ((SetupActivity) requireActivity()).prevButton(view));
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
