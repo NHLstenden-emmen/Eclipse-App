@@ -91,12 +91,13 @@
             android:layout_marginTop="310dp"
             android:layout_marginEnd="50dp"
             app:srcCompat="@drawable/login" />
+
         <TextView
             android:id="@+id/response"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="TextView"
             android:layout_marginTop="515dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

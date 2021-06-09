@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,11 +27,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import INF1D.eclipse.R;
 import INF1D.eclipse.databinding.FragmentSetupLoginBinding;
 import INF1D.eclipse.setup.SetupActivity;
+import INF1D.eclipse.setup.adapter.SetupAdapter;
 
 public class loginFragment extends Fragment {
 
@@ -53,55 +58,68 @@ public class loginFragment extends Fragment {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String url ="http://eclipse.serverict.nl/api/mirrors";
-                url ="https://api.androidhive.info/contacts/";
-                RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-
-                //create Json request
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            binding.response.setText(response.toString());
-                            JSONArray contacts = response.getJSONArray("contacts");
-                            String jsonResponse = "names equals: ";
-                            for (int i = 0; i < contacts.length(); i++) {
-                                JSONObject c = contacts.getJSONObject(i);
-
-                                String id = c.getString("id");
-                                String name = c.getString("name");
-                                String email = c.getString("email");
-                                String address = c.getString("address");
-                                String gender = c.getString("gender");
-
-                                // Phone node is JSON Object
-                                JSONObject phone = c.getJSONObject("phone");
-                                String mobile = phone.getString("mobile");
-                                String home = phone.getString("home");
-                                String office = phone.getString("office");
-
-                                jsonResponse += name + " ";
+                if(binding.UsernameInput.getText().length() > 0 && binding.passwordInput.getText().length() > 0){
+                    String username = binding.UsernameInput.getText().toString();
+                    String password = binding.passwordInput.getText().toString();
+                    String regex = "[`~!#$%^&*()_+=\\{}\\[\\]|\\\\:;“’<,>?๐฿]";
+                    Pattern pattern = Pattern.compile(regex , Pattern.CASE_INSENSITIVE);
+                    Matcher matcher = pattern.matcher(username);
+                    System.out.println(pattern);
+                    if(matcher.find()){
+                        binding.response.setText("not allowed characters in username " + username);
+                    } else {
+                        if(Pattern.matches(regex, password)){
+                            binding.response.setText("not allowed characters in your password");
+                        } else {
+                            String url ="http://eclipse.serverict.nl/api/login";
+                            RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+                            JSONObject jsonObj = new JSONObject();
+                            try {
+                                jsonObj.put("email", binding.UsernameInput.getText().toString());
+                                jsonObj.put("password", binding.passwordInput.getText().toString());
+                            } catch (JSONException e) {
+                                binding.response.setText(e.toString());
                             }
-                            binding.response.setText(jsonResponse);
-                        } catch (final JSONException e) {
-                            binding.response.setText(e.getMessage());
+
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest (Request.Method.POST, url,jsonObj, new Response.Listener<JSONObject>() {
+
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    binding.response.setText("Welcome");
+                                }
+                            }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    if(error instanceof AuthFailureError){
+                                        binding.response.setText("Wrong login info");
+                                    } else {
+                                        binding.response.setText("There was an unknown problem while verifying your login info");
+                                        System.out.println(error.toString());
+                                    }
+
+                                }
+                            }) {
+                                @Override
+                                public Map<String, String> getHeaders() {
+                                    Map<String, String>  params = new HashMap< String, String>();
+                                    params.put("content-type", "application/json");
+                                    params.put("accept", "application/json");
+                                    return params;
+                                }
+                                @Override
+                                public String getBodyContentType() {
+                                    return "application/json";
+                                }
+                            };
+                            // Access the RequestQueue through your singleton class.
+                            queue.add(jsonObjectRequest);
                         }
                     }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        binding.response.setText(error.toString());
-
-                    }
-                });
-                // Access the RequestQueue through your singleton class.
-                queue.add(jsonObjectRequest);
+                } else {
+                    binding.response.setText("Please enter your login info");
+                }
             }
         });
-
     }
-
 }

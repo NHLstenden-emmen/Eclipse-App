@@ -32,7 +32,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" name="Default Changelist" comment="Start JSON Parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" afterDir="false" />
     </list>
@@ -44,7 +43,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\roanm\.android\avd\Pixel_3a_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8N80WD2NL]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -65,17 +64,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Eclipse" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Eclipse" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Eclipse" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -104,8 +92,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_4_API_26" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-07T20:51:01.310608700Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@RZ8N80WD2NL" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-09T14:14:42.210508800Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -266,6 +254,14 @@
       <workItem from="1623084675854" duration="17366000" />
       <workItem from="1623103425684" duration="390000" />
     </task>
+    <task id="LOCAL-00001" summary="Start JSON Parsing">
+      <created>1623187314787</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623187314787</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,10 +284,39 @@
     <option name="LAST_COMMIT_MESSAGE" value="Start JSON Parsing" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623185984836">
+    <state width="1877" height="831" key="GridCell.Tab.0.bottom" timestamp="1623260401706">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="624" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1623248715587" />
+    <state width="1877" height="831" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623260401706" />
+    <state width="1877" height="831" key="GridCell.Tab.0.center" timestamp="1623260401706">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="624" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1623248715587" />
+    <state width="1877" height="831" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623260401706" />
+    <state width="1877" height="831" key="GridCell.Tab.0.left" timestamp="1623260401705">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="624" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1623248715587" />
+    <state width="1877" height="831" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623260401705" />
+    <state width="1877" height="831" key="GridCell.Tab.0.right" timestamp="1623260401706">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="624" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1623248715587" />
+    <state width="1877" height="831" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623260401706" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1623259898660">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623259898660" />
+    <state x="360" y="145" key="Vcs.Push.Dialog.v2" timestamp="1623187317687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="360" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1623187317687" />
+    <state x="731" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623262183729">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
     <state x="585" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1623185984836" />
+    <state x="731" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623262183729" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
