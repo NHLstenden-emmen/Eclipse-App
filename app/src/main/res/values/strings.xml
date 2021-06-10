@@ -4,4 +4,6 @@
     <string name="next">NEXT</string>
     <string name="back">PREV</string>
     <string name="start">FINISH</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

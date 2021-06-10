@@ -85,7 +85,12 @@ public class loginFragment extends Fragment {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    binding.response.setText("Welcome");
+                                    try {
+                                        binding.response.setText(response.getString("token"));
+                                        System.out.println(response.getString("token"));
+                                    } catch (JSONException e){
+                                        binding.response.setText(e.toString());
+                                    }
                                 }
                             }, new Response.ErrorListener() {
 

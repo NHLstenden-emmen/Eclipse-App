@@ -25,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding.floatingActionButton.setOnClickListener(this::startSetup);
 
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WidgetSettingsActivity.class));
+            }
+        });
+
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new DiscoveryAdapter(generateData()));
@@ -41,4 +48,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return data;
     }
+
+
 }
