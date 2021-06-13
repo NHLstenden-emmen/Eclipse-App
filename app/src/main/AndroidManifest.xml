@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eclipse"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WidgetSettingsActivity"></activity>
-        <activity android:name=".WidgetSettingsPageActivity"></activity>
+        <activity android:name=".TempUserSettings"></activity>
+        <activity android:name=".WidgetSettingsActivity" />
+        <activity android:name=".WidgetSettingsPageActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/LaunchTheme">

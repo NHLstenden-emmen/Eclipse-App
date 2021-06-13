@@ -5,6 +5,9 @@ import INF1D.eclipse.discovery.adapter.DiscoveryAdapter;
 import INF1D.eclipse.databinding.*;
 import INF1D.eclipse.setup.SetupActivity;
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,10 +38,13 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new DiscoveryAdapter(generateData()));
+
+
     }
 
     private void startSetup(View view) {
         startActivity(new Intent(this, SetupActivity.class));
+
     }
 
     private HashMap<Integer, Mirror> generateData() {
@@ -49,5 +55,14 @@ public class MainActivity extends AppCompatActivity {
         return data;
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.setting_menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        startActivity(new Intent(this, TempUserSettings.class));
+        return true;
+    }
 }

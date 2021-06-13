@@ -33,9 +33,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import INF1D.eclipse.R;
+import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.databinding.FragmentSetupLoginBinding;
 import INF1D.eclipse.setup.SetupActivity;
 import INF1D.eclipse.setup.adapter.SetupAdapter;
+
+import android.content.Intent;
+import android.net.Uri;
 
 public class loginFragment extends Fragment {
 
@@ -88,6 +92,8 @@ public class loginFragment extends Fragment {
                                     try {
                                         binding.response.setText(response.getString("token"));
                                         System.out.println(response.getString("token"));
+                                        PrefManager prefManager = new PrefManager(getContext());
+                                        prefManager.setUserToken(response.getString("token"));
                                     } catch (JSONException e){
                                         binding.response.setText(e.toString());
                                     }
@@ -124,6 +130,14 @@ public class loginFragment extends Fragment {
                 } else {
                     binding.response.setText("Please enter your login info");
                 }
+            }
+        });
+
+        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://eclipse.serverict.nl/registration"));
+                        startActivity(browserIntent);
             }
         });
     }

@@ -50,7 +50,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\simch\.android\avd\Pixel_3_XL_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\roanw\.android\avd\Pixel_XL_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -100,8 +100,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\simch\.android\avd\Pixel_3_XL_API_30.avd" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-11T18:42:59.572201600Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\roanw\.android\avd\Pixel_XL_API_30.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-06-13T18:24:29.297696800Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -121,6 +121,9 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.-1268953404">
+      <recent name="INF1D.eclipse" />
+    </key>
+    <key name="android.template.789777423">
       <recent name="INF1D.eclipse" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -382,6 +385,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="15" width="1089" height="809" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1623324239846" />
+    <state x="711" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1623610461555">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="711" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623610461555" />
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1623440457537">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -394,6 +401,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1623322981867" />
+    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1623608904242">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623608904242" />
+    <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog" timestamp="1623610430682">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623610430682" />
     <state x="15" y="107" key="AndroidCreateResourceFileDialog" timestamp="1623439996697">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -432,6 +447,14 @@
     </state>
     <state x="585" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1623185984836" />
     <state x="731" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1536.864@0.0.1920.1040" timestamp="1623262459355" />
+    <state x="667" y="119" width="600" height="801" key="find.popup" timestamp="1623612163277">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="119" width="600" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623612163277" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1623612337648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623612337648" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -78,10 +78,20 @@
             android:id="@+id/loginButton"
             android:layout_width="140dp"
             android:layout_height="55dp"
-            android:layout_marginStart="160dp"
+            android:layout_marginStart="190dp"
             android:layout_marginTop="460dp"
             android:backgroundTint="@color/purple_dark"
             android:text="    Login   ᐳ" />
+
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="140dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="460dp"
+            android:backgroundTint="@color/purple_dark"
+            android:text="    Sign up   ᐳ" />
+
 
         <ImageView
             android:id="@+id/imageView"
