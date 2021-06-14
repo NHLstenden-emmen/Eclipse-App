@@ -13,11 +13,11 @@ import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.databinding.ActivityMainBinding;
 import INF1D.eclipse.databinding.ActivityTempUserSettingsBinding;
 import INF1D.eclipse.databinding.ActivityWidgetSettingsBinding;
-import INF1D.eclipse.databinding.FragmentSetupLoginBinding;
+import INF1D.eclipse.databinding.FragmentSetup1Binding;
 
 public class TempUserSettings extends AppCompatActivity {
 
-    private FragmentSetupLoginBinding binding;
+    private FragmentSetup1Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
