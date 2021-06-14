@@ -32,42 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/CustomAdapter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/common/APIHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/Mirror.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/Mirror.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/adapter/DiscoveryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/adapter/DiscoveryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/MirrorSettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/MirrorSettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/MirrorSettingsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/MirrorSettingsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/WidgetHandlerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/WidgetHandlerActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/WidgetHandlerFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/AbstractDataHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/DataHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/DataProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/draggable/DraggableGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/draggable/DraggableGridFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/draggable/DraggableGridAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/draggable/DraggableGridAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/SetupAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/SetupAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_1/loginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/mirrorselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/succesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_4/succesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/welcomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_0/welcomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/wifiselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_3/wifiselectFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/splash.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_login.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_widgethandler_grid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_widgethandler_grid.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_widgethandler_grid_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_widgethandler_grid_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_3/wifiselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_3/wifiselectFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

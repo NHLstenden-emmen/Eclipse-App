@@ -50,7 +50,7 @@ public class WidgetSettingsActivity extends AppCompatActivity {
 
         ActivityWidgetSettingsBinding binding = ActivityWidgetSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        recyclerView = binding.Parent;
+        //recyclerView = binding.Parent;
 
         Widgets = new ArrayList<>();
         /*for (int j = 0; j < 10; j++) {
@@ -70,7 +70,7 @@ public class WidgetSettingsActivity extends AppCompatActivity {
                             widget.setParam(jsonObject.getString("params"));
                             Widgets.add(widget);
                         } catch (JSONException e) {
-                            binding.textView.setText(e.toString());
+                       //     binding.textView.setText(e.toString());
                         }
                     }
                 }
@@ -82,13 +82,14 @@ public class WidgetSettingsActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                /*
                 if (error instanceof AuthFailureError) {
                     binding.textView.setText("Wrong login info");
                 } else {
                     binding.textView.setText("There was an unknown problem while verifying your login info");
                     System.out.println(error.toString());
                 }
-
+                 */
             }
         }) {
             @Override

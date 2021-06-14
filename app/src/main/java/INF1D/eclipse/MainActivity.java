@@ -141,15 +141,4 @@ public class MainActivity extends AppCompatActivity {
     private void startSetup(View view) {
         startActivity(new Intent(this, SetupActivity.class));
     }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.setting_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity(new Intent(this, TempUserSettings.class));
-        return true;
-    }
 }
