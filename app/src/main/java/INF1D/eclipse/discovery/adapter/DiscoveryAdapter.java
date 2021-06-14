@@ -12,13 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class DiscoveryAdapter extends RecyclerView.Adapter<DiscoveryAdapter.ViewHolder> {
-    public final HashMap<Integer, Mirror> data;
+    public final List<Mirror> data;
 
-    public DiscoveryAdapter (HashMap<Integer, Mirror> data){
+    public DiscoveryAdapter (List<Mirror> data){
         this.data = data;
     }
 

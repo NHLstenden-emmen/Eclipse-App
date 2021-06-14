@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+            android:key="prefCat"
+            android:title="Widgets">
+        <ListPreference
+                android:key="widget"
+                android:title="Widget selection"
+                android:dialogTitle="Choose widget"
+                android:summary="Select an widget!"
+                />
+        <Preference
+                app:key="remove"
+                app:title="Remove"
+                android:summary="Remove this widget"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

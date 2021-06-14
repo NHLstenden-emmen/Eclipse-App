@@ -1,13 +1,12 @@
 package INF1D.eclipse.settings.widgethandler.draggable;
 
 import INF1D.eclipse.R;
+import INF1D.eclipse.discovery.Mirror;
 import INF1D.eclipse.settings.widgethandler.WidgetHandlerActivity;
-import INF1D.eclipse.settings.widgethandler.data.AbstractDataHandler;
+import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -19,7 +18,9 @@ import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 
-public class DraggableGrid extends Fragment {
+import java.io.Serializable;
+
+public class DraggableGridFragment extends Fragment implements Serializable {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private DraggableGridAdapter mAdapter;
@@ -29,7 +30,6 @@ public class DraggableGrid extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -48,6 +48,7 @@ public class DraggableGrid extends Fragment {
         // drag & drop manager
         mRecyclerViewDragDropManager = new RecyclerViewDragDropManager();
         mRecyclerViewDragDropManager.setDraggingItemShadowDrawable((NinePatchDrawable) ContextCompat.getDrawable(requireContext(), R.drawable.material_shadow_z3));
+        mRecyclerViewDragDropManager.setItemMoveMode(RecyclerViewDragDropManager.ITEM_MOVE_MODE_SWAP);
 
         // Start dragging after long press
         mRecyclerViewDragDropManager.setInitiateOnLongPress(true);
@@ -61,7 +62,7 @@ public class DraggableGrid extends Fragment {
         mRecyclerViewDragDropManager.setDraggingItemRotation(15.0f);
         //adapter
 
-        mAdapter = new DraggableGridAdapter(getDataProvider());
+        mAdapter = new DraggableGridAdapter((DataProvider) getDataProvider());
         mWrappedAdapter = mRecyclerViewDragDropManager.createWrappedAdapter(mAdapter);      // wrap for dragging
 
         GeneralItemAnimator animator = new DraggableItemAnimator(); // DraggableItemAnimator is required to make item animations properly.
@@ -71,7 +72,6 @@ public class DraggableGrid extends Fragment {
         mRecyclerView.setItemAnimator(animator);
 
         mRecyclerViewDragDropManager.attachRecyclerView(mRecyclerView);
-
     }
 
     @Override
@@ -97,13 +97,18 @@ public class DraggableGrid extends Fragment {
             WrapperAdapterUtils.releaseAll(mWrappedAdapter);
             mWrappedAdapter = null;
         }
+
         mAdapter = null;
         mLayoutManager = null;
 
         super.onDestroyView();
     }
 
-    public AbstractDataHandler getDataProvider() {
+    public Fragment getDataProvider() {
         return ((WidgetHandlerActivity) requireActivity()).getDataProvider();
+    }
+
+    public DraggableGridAdapter getmAdapter() {
+        return this.mAdapter;
     }
 }

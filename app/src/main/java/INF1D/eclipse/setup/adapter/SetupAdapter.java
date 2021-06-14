@@ -1,10 +1,10 @@
 package INF1D.eclipse.setup.adapter;
 
-import INF1D.eclipse.setup.fragments.loginFragment;
-import INF1D.eclipse.setup.fragments.mirrorselectFragment;
-import INF1D.eclipse.setup.fragments.succesFragment;
-import INF1D.eclipse.setup.fragments.welcomeFragment;
-import INF1D.eclipse.setup.fragments.wifiselectFragment;
+import INF1D.eclipse.setup.fragments.setup_1.loginFragment;
+import INF1D.eclipse.setup.fragments.setup_2.mirrorselectFragment;
+import INF1D.eclipse.setup.fragments.setup_4.succesFragment;
+import INF1D.eclipse.setup.fragments.setup_0.welcomeFragment;
+import INF1D.eclipse.setup.fragments.setup_3.wifiselectFragment;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
