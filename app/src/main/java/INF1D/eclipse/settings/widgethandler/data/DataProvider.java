@@ -1,35 +1,71 @@
 package INF1D.eclipse.settings.widgethandler.data;
 
 
+import INF1D.eclipse.R;
+import INF1D.eclipse.discovery.Mirror;
+import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridAdapter;
+import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridFragment;
+import INF1D.eclipse.settings.widgethandler.widget.widgetSettingsActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
-public class DataProvider extends AbstractDataHandler {
-    private final List<ConcreteData> mData;
-    private ConcreteData mLastRemovedData;
-    private int mLastRemovedPosition = -1;
+public class DataProvider extends Fragment implements Serializable {
+    private Mirror selectedMirror;
+    public final List<TileData> mData = new LinkedList<>();
 
-    public DataProvider() {
-        mData = new LinkedList<>();
+    private final HashMap<String, DataProvider.TileData> availableWidgets = new HashMap<>();
+    private final String widgetsEndpoint = "http://eclipse.serverict.nl/api/widgets";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getWidgetsFromAPI();
+
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
-                final long id = mData.size();
-                final int viewType = 0;
-                mData.add(new ConcreteData(id, viewType));
+                final int id = mData.size();
+                mData.add(id, new TileData(id, "empty"));
             }
+        }
+
+        if (getArguments() != null) {
+            selectedMirror = (Mirror) getArguments().getSerializable("selectedMirror");
+         //   mAdapter = ((DraggableGridFragment) getArguments().getSerializable("draggableGridFragment")).getmAdapter();
+            //  findPreference("serialnmbr").setTitle(selectedMirror.serialNo);
+            // findPreference("ip").setTitle(selectedMirror.IP.getHostAddress());
         }
     }
 
-    @Override
+    public List<TileData> getmData() {
+        return mData;
+    }
+
     public int getCount() {
         return mData.size();
     }
 
-    @Override
-    public Data getItem(int index) {
+    public TileData getItem(int index) {
         if (index < 0 || index >= getCount()) {
             throw new IndexOutOfBoundsException("index = " + index);
         }
@@ -37,98 +73,141 @@ public class DataProvider extends AbstractDataHandler {
         return mData.get(index);
     }
 
-    @Override
-    public int undoLastRemoval() {
-        if (mLastRemovedData != null) {
-            int insertedPosition;
-            if (mLastRemovedPosition >= 0 && mLastRemovedPosition < mData.size()) {
-                insertedPosition = mLastRemovedPosition;
-            } else {
-                insertedPosition = mData.size();
+    public void swapItem(int fromPosition, int toPosition) {
+        if (fromPosition == toPosition) return;
+
+        Collections.swap(mData, toPosition, fromPosition);
+    }
+
+    public void replaceItem(int clickedPositionIndex, TileData selectedWidgetTile) {
+        mData.remove(clickedPositionIndex);
+        mData.add(clickedPositionIndex, selectedWidgetTile);
+
+        System.out.println("SET " + mData.get(clickedPositionIndex).getType());
+    }
+
+    public DataProvider getDataProvider()
+    {
+        return this;
+    }
+
+    private void parseJSONIntoList(JSONArray response) throws JSONException {
+        for (int i = 0; i < response.length(); i++) {
+            ArrayList<JSONObject> json = new ArrayList<>();
+            json.add(response.getJSONObject(i));
+            for (JSONObject jsonObject : json) {
+                if(!jsonObject.getString("params").equals("null")) {
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), new JSONArray(jsonObject.getString("params"))));
+                } else {
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type")));
+                }
             }
-
-            mData.add(insertedPosition, mLastRemovedData);
-
-            mLastRemovedData = null;
-            mLastRemovedPosition = -1;
-
-            return insertedPosition;
-        } else {
-            return -1;
         }
     }
 
-    @Override
-    public void moveItem(int fromPosition, int toPosition) {
-        if (fromPosition == toPosition) {
-            return;
-        }
+    private void getWidgetsFromAPI() {
 
-        final ConcreteData item = mData.remove(fromPosition);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
 
-        mData.add(toPosition, item);
-        mLastRemovedPosition = -1;
+        builder.setCancelable(false);
+        builder.setView(R.layout.layout_loading_dialog);
+        AlertDialog dialog = builder.create();
+
+        new Thread(() -> {
+            Objects.requireNonNull(getActivity()).runOnUiThread(dialog::show);
+
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+            JsonArrayRequest widgetRequest = new JsonArrayRequest(Request.Method.GET, widgetsEndpoint, null, response -> {
+                try {
+                    parseJSONIntoList(response);
+                    Objects.requireNonNull(getActivity()).runOnUiThread(dialog::dismiss);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }, Throwable::printStackTrace);
+            queue.add(widgetRequest);
+        }).start();
     }
 
-    @Override
-    public void removeItem(int position) {
-        //noinspection UnnecessaryLocalVariable
-        final ConcreteData removedItem = mData.remove(position);
+    private void parseUserSettings(JSONArray response) {
 
-        mLastRemovedData = removedItem;
-        mLastRemovedPosition = position;
     }
 
-    public static final class ConcreteData extends Data {
 
-        private final long mId;
-        //   private Icon mIcon;
-        private final int mViewType;
-        private boolean mPinned;
+    public HashMap<String, TileData> getAvailableWidgets() {
+        return availableWidgets;
+    }
 
-        ConcreteData(long id, int viewType) {
-            mId = id;
-            mViewType = viewType;
+    public Mirror getSelectedMirror() {
+        return this.selectedMirror;
+    }
+
+    public static final class TileData implements Serializable  {
+        public String type;
+        public JSONArray params = null;
+        public int mId;
+        public int icon;
+
+        public TileData(String type, JSONArray params) {
+            this.type = type;
+            this.params = params;
+            this.icon = parseIcon();
         }
 
-        private static String setIcon(long id, String text) {
-            return id + " - " + text;
+        public TileData(String type) {
+            this.type = type;
+            this.icon = parseIcon();
         }
 
-        @Override
-        public boolean isSectionHeader() {
-            return false;
+        public TileData(int id, String type) {
+            this.mId = id;
+            this.type = type;
         }
 
-        @Override
-        public int getViewType() {
-            return mViewType;
+        public void setType(String type) {
+            this.type = type;
         }
 
-        @Override
+        public String getType() {
+            return type;
+        }
+
+        public boolean hasParams() {
+            return params != null;
+        }
+
+        public void setParams(JSONArray params) {
+            this.params = params;
+        }
+
+        public JSONArray getParams()
+        {
+            return this.params;
+        }
+
         public long getId() {
             return mId;
         }
 
         @NonNull
-        @Override
         public String toString() {
             return null;
         }
 
-        @Override
         public String getText() {
             return null;
         }
 
-        @Override
-        public boolean isPinned() {
-            return mPinned;
+        public int parseIcon() {
+            switch(getType()) {
+                default:
+                    return R.drawable.weather;
+            }
         }
 
-        @Override
-        public void setPinned(boolean pinned) {
-            mPinned = pinned;
+        public int getIcon() {
+            return this.icon;
         }
+
     }
 }

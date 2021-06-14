@@ -31,7 +31,7 @@ public class SetupActivity extends AppCompatActivity {
         return viewPager.getCurrentItem() + 1;
     }
 
-    public void nextButton(View view) {
+    public void nextButton() {
         int current = getNextItem();
         if (current < Objects.requireNonNull(viewPager.getAdapter()).getItemCount() -1) {
             viewPager.setCurrentItem(current);

@@ -1,43 +1,74 @@
 package INF1D.eclipse.discovery;
 
-import android.util.Log;
+import android.net.nsd.NsdServiceInfo;
 import androidx.annotation.NonNull;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Mirror implements Serializable {
-    public String serialNo;
     public String name;
-    public Inet4Address IP;
-    public byte[] macAdress; //TODO
+    private InetAddress address;
+    private final int port;
+    private final HashMap<String, String> attributes = new HashMap<>();
 
     private WebSocket webSocket;
 
 
-    public Mirror(String name, String host, String serialNo) {
-        this.name = name;
-        this.serialNo = serialNo;
+    public Mirror() throws UnknownHostException {
+        this.name = "testmirror";
+        this.port = 80;
+        this.address = InetAddress.getByName("127.0.0.1");
+    }
+    public Mirror(NsdServiceInfo serviceInfo)  {
+        this.name = serviceInfo.getServiceName();
+        this.port = serviceInfo.getPort();
 
         try {
-            this.IP = (Inet4Address) Inet4Address.getByName(host);
+            this.address = InetAddress.getByName(serviceInfo.getHost().getHostAddress());
         }
         catch (UnknownHostException e) {
             e.printStackTrace();
         }
+
+        serviceInfo.getAttributes().forEach((key, value) -> this.attributes.put(key, new String(value)));
+    }
+
+    public InetAddress getAddress() {
+        if(address != null) {
+            try {
+                return InetAddress.getByAddress(address.getHostAddress().replace("/", "").getBytes(StandardCharsets.UTF_8));
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void openWebSocket() {
-        OkHttpClient client = new OkHttpClient.Builder().pingInterval(30, TimeUnit.SECONDS).build();
-        String SERVER_URL = "ws:/"+ this.IP.getHostAddress() +":80";
-        Request request = new Request.Builder().url(SERVER_URL).build();
+        new Thread(() -> {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("ws://" + getAddress().getHostAddress() + ":" + port).build();
+                webSocket = client.newWebSocket(request, new Listener());
+           // client.dispatcher().executorService().shutdown();
+        }, "websocket").start();
+    }
 
-        webSocket = client.newWebSocket(request, new Listener());
+    public void closeWebSocket() {
+        webSocket.close(1, "user closed settings");
     }
 
     public WebSocket getWebSocket() {
@@ -45,28 +76,35 @@ public class Mirror implements Serializable {
     }
 
     public void sendJSONToMirror(JSONObject json) {
-        webSocket.send(json.toString());
+        System.out.println(json);
+
+        //   webSocket.send(json.toString());
     }
 
     public static class Listener extends WebSocketListener {
         @Override
         public void onOpen(@NonNull WebSocket webSocket, @NonNull Response response) {
-            super.onOpen(webSocket, response);
-            try {
-                webSocket.send(new JSONObject().put("type", "hoi").toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Connected");
         }
 
         @Override
         public void onMessage(@NonNull WebSocket webSocket, @NonNull String text) {
-            super.onMessage(webSocket, text);
+            System.out.println("Incoming: " + text);
+        }
+
+        @Override
+        public void onClosing(@NonNull WebSocket webSocket, int code, @NonNull String reason) {
+            System.out.println("Closing " + code + "/" + reason);
         }
 
         @Override
         public void onClosed(@NonNull WebSocket webSocket, int code, @NonNull String reason) {
-            super.onClosed(webSocket, code, reason);
+            System.out.println("Closed " + code + "/" + reason);
+        }
+
+        @Override
+        public void onFailure(@NonNull WebSocket webSocket, @NonNull Throwable t, Response response) {
+            System.out.println(t.getMessage());
         }
     }
 }

@@ -4,17 +4,22 @@ import INF1D.eclipse.R;
 import INF1D.eclipse.discovery.Mirror;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 
-public class MirrorSettingsActivity extends FragmentActivity {
+public class MirrorSettingsActivity extends AppCompatActivity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null){
             Mirror selectedMirror = (Mirror) getIntent().getSerializableExtra("selectedMirror");
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, newInstance(selectedMirror)).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, newInstance(selectedMirror))
+                    .commit();
         }
     }
 
