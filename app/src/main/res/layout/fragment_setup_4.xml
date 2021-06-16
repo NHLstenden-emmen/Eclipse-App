@@ -73,28 +73,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />-->
-            
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nextButtonLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <Button
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nextButtonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageButton
                     android:id="@+id/nextButton"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="17dp"
                     android:background="@drawable/circle"
-                    android:text=">"
-                    tools:layout_editor_absoluteX="280dp"
-                    tools:layout_editor_absoluteY="11dp"
-                    tools:ignore="MissingConstraints"/>
+                    android:drawable="@drawable/ic_next"
+                    android:src="@drawable/ic_next"
+                    android:onClick="nextButton"
+                    app:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_forward"
-                    tools:ignore="MissingConstraints"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,47 +115,47 @@
                     app:srcCompat="@drawable/setup_unselected"/>
 
             <ImageView
-                android:id="@+id/selection2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_unselected" />
+                    android:id="@+id/selection2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/setup_unselected" />
 
             <ImageView
-                android:id="@+id/selection3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_unselected" />
+                    android:id="@+id/selection3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/setup_unselected" />
 
             <ImageView
-                android:id="@+id/selection4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_unselected" />
+                    android:id="@+id/selection4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.75"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/setup_unselected" />
 
             <ImageView
-                android:id="@+id/selection5"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/setup_selected" />
+                    android:id="@+id/selection5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/setup_selected" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

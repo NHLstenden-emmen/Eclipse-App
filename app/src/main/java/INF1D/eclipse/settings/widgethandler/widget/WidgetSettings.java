@@ -34,8 +34,6 @@ public class WidgetSettings extends PreferenceFragmentCompat {
     private DataProvider.TileData currentTileData;
     private Mirror selectedMirror;
     private widgetSettingsActivity activity;
-    private DataProvider mProvider;
-    private DraggableGridAdapter mAdapter;
     private int clickedPositionIndex;
 
     @Override
@@ -49,11 +47,10 @@ public class WidgetSettings extends PreferenceFragmentCompat {
             selectedMirror = activity.getMirror();
             currentTileData = activity.getSelectedTileData();
             availableWidgets = activity.getWidgetList();
-          //  mProvider = activity.getmProvider();
             clickedPositionIndex = activity.getCurrentPosition();
+
             Toast.makeText(getContext(), "WIDGETS LOADED FROM API " + availableWidgets.size(), Toast.LENGTH_SHORT).show();
         }
-
 
         final ListPreference listPreference = findPreference("widget");
         if (listPreference != null) {
@@ -82,12 +79,9 @@ public class WidgetSettings extends PreferenceFragmentCompat {
 //        final PreferenceCategory preferenceCategory = findPreference("prefCat");
         final Preference removeButton = findPreference("remove");
                 if(removeButton != null) {
-                    removeButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference preference) {
-                            Objects.requireNonNull(getActivity()).onBackPressed();
-                            return true;
-                        }
+                    removeButton.setOnPreferenceClickListener(preference -> {
+                        Objects.requireNonNull(getActivity()).onBackPressed();
+                        return true;
                     });
                 }
     }
@@ -126,6 +120,5 @@ public class WidgetSettings extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-    }
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) { }
 }

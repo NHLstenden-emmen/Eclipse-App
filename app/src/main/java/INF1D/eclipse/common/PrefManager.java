@@ -9,16 +9,13 @@ public class PrefManager {
     SharedPreferences.Editor editor;
     Context _context;
 
-    int PRIVATE_MODE = 0;
-
-    private static final String PREF_NAME = "eclips-mirror";
-    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
-    private static final String USER_TOKEN = "userToken";
+    private final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    private final String USER_TOKEN = "userToken";
 
     @SuppressLint("CommitPrefEdits")
     public PrefManager(Context context) {
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = _context.getSharedPreferences("eclipse-mirror", 0);
         editor = pref.edit();
     }
 
@@ -38,5 +35,9 @@ public class PrefManager {
     public void setUserToken(String token){
         editor.putString(USER_TOKEN, token);
         editor.commit();
+    }
+
+    public boolean isUserLoggedIn() {
+        return pref.getString(USER_TOKEN, null) != null;
     }
 }

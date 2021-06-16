@@ -1,21 +1,10 @@
 package INF1D.eclipse.settings.widgethandler.data;
 
-
 import INF1D.eclipse.R;
 import INF1D.eclipse.discovery.Mirror;
-import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridAdapter;
-import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridFragment;
-import INF1D.eclipse.settings.widgethandler.widget.widgetSettingsActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,8 +19,8 @@ import java.util.*;
 
 public class DataProvider extends Fragment implements Serializable {
     private Mirror selectedMirror;
-    public final List<TileData> mData = new LinkedList<>();
 
+    private final List<TileData> mData = new LinkedList<>();
     private final HashMap<String, DataProvider.TileData> availableWidgets = new HashMap<>();
     private final String widgetsEndpoint = "http://eclipse.serverict.nl/api/widgets";
 
@@ -40,7 +29,6 @@ public class DataProvider extends Fragment implements Serializable {
         super.onCreate(savedInstanceState);
 
         getWidgetsFromAPI();
-
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
@@ -187,15 +175,6 @@ public class DataProvider extends Fragment implements Serializable {
 
         public long getId() {
             return mId;
-        }
-
-        @NonNull
-        public String toString() {
-            return null;
-        }
-
-        public String getText() {
-            return null;
         }
 
         public int parseIcon() {

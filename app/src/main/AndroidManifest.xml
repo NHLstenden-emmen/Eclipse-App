@@ -27,16 +27,14 @@
                 android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".settings.MirrorSettingsActivity"/>
         <activity android:name=".settings.widgethandler.WidgetHandlerActivity"/>
-        <activity
-                android:name=".setup.SetupActivity"
-                android:theme="@style/Theme.Eclipse.NoActionBar"/>
+        <activity android:name=".setup.SetupActivity" android:theme="@style/Theme.Eclipse.NoActionBar"/>
+        <activity android:name=".TempUserSettings" />
     </application>
 
 </manifest>

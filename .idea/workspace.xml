@@ -32,11 +32,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/CustomAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/common/PrefManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/common/PrefManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/adapter/DiscoveryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/discovery/adapter/DiscoveryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/WidgetHandlerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/WidgetHandlerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/data/DataProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/widget/WidgetSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/settings/widgethandler/widget/WidgetSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/SetupActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/loginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/WifiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/adapter/MirrorSetupAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/mirrorselectFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_1/loginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_1/loginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_3/wifiselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_3/wifiselectFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" afterDir="false" />
+    </list>
+    <list id="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" name="Changes by roWan" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_4.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +66,7 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\roanw\.android\avd\Pixel_XL_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[9886784a5251553552]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -91,9 +111,9 @@
       <list>
         <option value="navigationResourceFile" />
         <option value="valueResourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -107,6 +127,61 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/app/src/main/res/layout/fragment_setup_1.xml">
+      <ranges>
+        <range start1="2" end1="7" start2="2" end2="7" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="11" end1="23" start2="11" end2="23" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="25" end1="33" start2="25" end2="33" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="35" end1="42" start2="35" end2="42" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="44" end1="54" start2="44" end2="55" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="56" end1="63" start2="57" end2="64" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="65" end1="84" start2="66" end2="77" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="86" end1="93" start2="79" end2="86" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="96" end1="103" start2="89" end2="96" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="105" end1="114" start2="98" end2="107" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="119" end1="128" start2="112" end2="121" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="130" end1="141" start2="123" end2="135" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="143" end1="155" start2="137" end2="150" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="157" end1="163" start2="152" end2="158" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="165" end1="174" start2="160" end2="169" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="176" end1="185" start2="171" end2="180" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="187" end1="195" start2="182" end2="190" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="197" end1="206" start2="192" end2="201" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="208" end1="217" start2="203" end2="212" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="224" end1="224" start2="219" end2="220" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/MainActivity.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="13" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="16" end1="20" start2="17" end2="19" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="21" end1="21" start2="20" end2="21" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="24" end1="24" start2="24" end2="27" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="25" end1="25" start2="28" end2="29" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="26" end1="26" start2="30" end2="31" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="139" end1="139" start2="144" end2="149" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="140" end1="140" start2="150" end2="154" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/app/src/main/java/INF1D/eclipse/setup/fragments/setup_2/mirrorselectFragment.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="5" end1="6" start2="4" end2="5" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="11" end1="12" start2="10" end2="10" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="20" end1="22" start2="18" end2="20" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="24" end1="25" start2="22" end2="22" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="26" end1="27" start2="23" end2="33" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="32" end1="33" start2="38" end2="39" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="36" end1="44" start2="42" end2="42" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="46" end1="46" start2="44" end2="45" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="47" end1="50" start2="46" end2="48" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="51" end1="54" start2="49" end2="52" changelist="d6fb0f98-f716-4c96-8f5a-abbabe76cf7a" />
+        <range start1="56" end1="58" start2="54" end2="56" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+        <range start1="59" end1="60" start2="57" end2="57" changelist="4a65aa9c-8f9f-4a6d-9866-261d114d2b5c" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectId" id="1tcXUlBISX5SeblmwxuEcVhBqLm" />
   <component name="ProjectLevelVcsManager">
@@ -138,6 +213,9 @@
     <key name="android.template.2107498091">
       <recent name="INF1D.eclipse.settings" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="INF1D.eclipse" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\rhass\Desktop\Eclipse Mirror\GIT\Eclipse-App\app\src\main\res\layout" />
       <recent name="C:\Users\rhass\Desktop\Eclipse Mirror\GIT\Eclipse-App\app\src\main\res\drawable-v24" />
@@ -155,19 +233,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -183,7 +248,6 @@
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
-      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -192,31 +256,8 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -231,6 +272,17 @@
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Eclipse [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -249,7 +301,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="Eclipse:app [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -268,7 +322,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -295,6 +351,9 @@
       <workItem from="1623485739322" duration="8229000" />
       <workItem from="1623494144730" duration="5188000" />
       <workItem from="1623503336349" duration="30758000" />
+      <workItem from="1623751441315" duration="7915000" />
+      <workItem from="1623766641786" duration="1943000" />
+      <workItem from="1623833050434" duration="18160000" />
     </task>
     <servers />
   </component>
@@ -312,40 +371,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1623697608978">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608978" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1623697608977">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608977" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1623697608977">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608977" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1623697608977">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608977" />
-    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1623697608978">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608978" />
-    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1623697608978">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608978" />
-    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1623697608978">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608978" />
-    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1623697608978">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1623697608978" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

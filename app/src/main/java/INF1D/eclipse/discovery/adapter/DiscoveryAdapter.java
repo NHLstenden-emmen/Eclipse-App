@@ -33,7 +33,6 @@ public class DiscoveryAdapter extends RecyclerView.Adapter<DiscoveryAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull DiscoveryAdapter.ViewHolder holder, int position) {
-      //  holder.settingsButton.setText(this.data.get(position));
         holder.mirrorName.setText(Objects.requireNonNull(this.data.get(position)).name);
         holder.selectedMirror = this.data.get(position);
     }
