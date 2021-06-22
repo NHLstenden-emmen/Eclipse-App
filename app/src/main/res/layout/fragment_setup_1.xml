@@ -12,9 +12,9 @@
             android:id="@+id/loginContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="100dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="40dp" />
+                android:textSize="40dp"/>
 
         <TextView
                 android:id="@+id/usernameLabel"
@@ -39,7 +39,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="100dp"
                 android:text="Username"
-                android:textSize="20dp" />
+                android:textSize="20dp"/>
 
         <EditText
                 android:id="@+id/UsernameInput"
@@ -61,7 +61,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="210dp"
                 android:text="Password"
-                android:textSize="20dp" />
+                android:textSize="20dp"/>
 
         <EditText
                 android:id="@+id/passwordInput"
@@ -80,31 +80,19 @@
                 android:id="@+id/signupButton"
                 android:layout_width="140dp"
                 android:layout_height="55dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="460dp"
                 android:backgroundTint="@color/purple_dark"
-                android:text="    Sign up   ᐳ" />
+                android:text="    Sign up   ᐳ"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="20dp"/>
 
 
         <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="310dp"
-                android:layout_marginEnd="50dp"
-                app:srcCompat="@drawable/login" />
-
-        <TextView
-                android:id="@+id/response"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="515dp"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:srcCompat="@drawable/login"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="30dp"/>
 
 
     </androidx.cardview.widget.CardView>

@@ -1,7 +1,6 @@
 package INF1D.eclipse.setup.fragments.setup_0;
 
 import INF1D.eclipse.databinding.FragmentSetup0Binding;
-import INF1D.eclipse.databinding.FragmentSetup1Binding;
 import INF1D.eclipse.setup.SetupActivity;
 import android.content.Context;
 import android.net.wifi.WifiManager;

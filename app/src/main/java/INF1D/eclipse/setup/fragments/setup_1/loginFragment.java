@@ -1,6 +1,5 @@
 package INF1D.eclipse.setup.fragments.setup_1;
 
-import INF1D.eclipse.R;
 import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.databinding.FragmentSetup1Binding;
 import INF1D.eclipse.setup.SetupActivity;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -21,15 +19,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 public class loginFragment extends Fragment {
     private FragmentSetup1Binding binding;
     private boolean isRunning;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,15 +71,16 @@ public class loginFragment extends Fragment {
         Volley.newRequestQueue(Objects.requireNonNull(getContext())).add(jsonObjectRequest);
     }
 
-
-      private VolleyCallback loginCallback() {
+    private VolleyCallback loginCallback() {
         return new VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {
                 isRunning = false;
-                ((SetupActivity) requireActivity()).nextButton();
                 try {
-                    new PrefManager(getContext()).setUserToken(result.getString("token"));
+                    PrefManager prefManager = new PrefManager(getContext());
+                    prefManager.setUserToken(result.getString("token"));
+                    prefManager.setUserID(result.getJSONObject("user").getInt("id"));
+                    ((SetupActivity) requireActivity()).nextButton();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -102,5 +98,4 @@ public class loginFragment extends Fragment {
         void onSuccess(JSONObject result);
         void onError(VolleyError error);
     }
-
 }

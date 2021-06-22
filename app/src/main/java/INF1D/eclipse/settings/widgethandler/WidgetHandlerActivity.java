@@ -1,12 +1,13 @@
 package INF1D.eclipse.settings.widgethandler;
 
+import INF1D.eclipse.common.Mirror;
+import INF1D.eclipse.common.MirrorSocket;
 import INF1D.eclipse.R;
-import INF1D.eclipse.discovery.Mirror;
+import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
-import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridAdapter;
 import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridFragment;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,36 +16,43 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 public class WidgetHandlerActivity extends AppCompatActivity {
     private Mirror selectedMirror;
-    private final String userSettingsEndpoint = "http://eclipse.serverict.nl/api/user_settings/1";
-    private HashMap<Integer, JSONArray> userSettingsAPI = new HashMap<>();
+    private PrefManager prefManager;
+    private HashMap<Integer, String> userSettingsAPI;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Widget Placement");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.activity_widgethandler);
-        selectedMirror = (Mirror) getIntent().getSerializableExtra("selectedMirror");
 
-        try {
-            getUserSettingsFromAPI();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        selectedMirror = (Mirror) getIntent().getSerializableExtra("selectedMirror");
+        userSettingsAPI = (HashMap<Integer, String>) getIntent().getSerializableExtra("userSettings");
+        selectedMirror.openWebSocket();
+        prefManager = new PrefManager(getApplicationContext());
 
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(newInstance((Mirror) getIntent().getSerializableExtra("selectedMirror")), "data provider")
+                    .add(newInstance(selectedMirror), "data provider")
                     .commit();
 
             getSupportFragmentManager()
@@ -54,98 +62,41 @@ public class WidgetHandlerActivity extends AppCompatActivity {
         }
     }
 
-    private void getUserSettingsFromAPI() throws InterruptedException {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setView(R.layout.layout_loading_dialog);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        Thread getUserSettings = getUserSettingsThread(dialog);
-        getUserSettings.start();
-        getUserSettings.join();
-
-        dialog.dismiss();
-    }
-
-    private Thread getUserSettingsThread(AlertDialog dialog) {
-        return new Thread(() -> {
-            RequestQueue queue = Volley.newRequestQueue(this);
-
-            JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.GET, userSettingsEndpoint, null, response -> {
-                try {
-                    parseUserSettings(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                runOnUiThread(dialog::dismiss);
-            }, Throwable::printStackTrace);
-
-            queue.add(userRequest);
-        });
-    }
-
-    private void parseUserSettings(JSONObject response) throws JSONException {
-        String rawJSON = response.getString("widget_settings");
-
-        if(!rawJSON.equals("null")) {
-            Toast.makeText(getApplicationContext(), "hoi", Toast.LENGTH_SHORT).show();
-            System.out.println(rawJSON);
-        } else {
-            userSettingsAPI = null;
-        }
-    }
-
     @Override
-    protected void onStop() {
+    protected void onDestroy() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setCancelable(false);
         builder.setView(R.layout.layout_loading_dialog);
         AlertDialog dialog = builder.create();
 
-        new Thread(() -> {
-            JSONObject jsonObject = new JSONObject();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JSONObject postPayload = new JSONObject();
 
-            DraggableGridAdapter.getDataProvider().getmData().forEach(w -> {
-                JSONArray jsonArray = new JSONArray();
-                jsonArray.put(w.type);
-                try { jsonObject.put(String.valueOf(w.getId()), jsonArray); }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            });
-            /* POST settings to API */
-                RequestQueue queue = Volley.newRequestQueue(this);
-                JSONObject postPayload = new JSONObject();
+        try {
+            postPayload.put("id", prefManager.getUserID());
+            postPayload.put("widget_settings",   MirrorSocket.parseTileDataToJSON().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.POST, "http://eclipse.serverict.nl/api/user_settings/update", postPayload, response -> runOnUiThread(dialog::dismiss), Throwable::printStackTrace) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                params.put("Accept", "application/json");
+                params.put("Authorization", "Bearer " + prefManager.getUserToken());
 
-                try {
-                    postPayload.put("user_id", "1");
-                    postPayload.put("widget_settings", jsonObject.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                JsonObjectRequest userRequest = new JsonObjectRequest(Request.Method.POST, "http://eclipse.serverict.nl/api/user_settings", postPayload, response -> {
-                    runOnUiThread(dialog::dismiss);
-                }, Throwable::printStackTrace) {
-                    @Override
-                    public Map<String, String> getHeaders() {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("content-type", "application/json");
-                        params.put("accept", "application/json");
-                        return params;
-                    }
+                return params;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
 
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json";
-                    }
-                };
-
-                queue.add(userRequest);
-        }).start();
-        super.onStop();
+        queue.add(userRequest);
+        super.onDestroy();
     }
 
     public DataProvider newInstance(Mirror selected) {
@@ -154,7 +105,6 @@ public class WidgetHandlerActivity extends AppCompatActivity {
 
         args.putSerializable("selectedMirror", selected);
         args.putSerializable("userSettings", userSettingsAPI);
-
         fragment.setArguments(args);
 
         return fragment;

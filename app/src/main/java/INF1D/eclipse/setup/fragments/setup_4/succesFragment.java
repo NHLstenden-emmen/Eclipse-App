@@ -1,7 +1,6 @@
 package INF1D.eclipse.setup.fragments.setup_4;
 
 import INF1D.eclipse.R;
-import INF1D.eclipse.databinding.FragmentSetup3Binding;
 import INF1D.eclipse.databinding.FragmentSetup4Binding;
 import INF1D.eclipse.setup.SetupActivity;
 import android.os.Bundle;

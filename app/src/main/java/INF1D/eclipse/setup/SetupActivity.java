@@ -2,6 +2,7 @@ package INF1D.eclipse.setup;
 
 import INF1D.eclipse.R;
 import INF1D.eclipse.setup.adapter.SetupAdapter;
+import INF1D.eclipse.setup.fragments.setup_2.mirrorselectFragment;
 import android.content.pm.PackageManager;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
@@ -24,119 +25,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import static android.Manifest.permission.*;
 
 public class SetupActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
-    private List<ScanResult> foundMirrorHotspots = new ArrayList<>();
-    private List<ScanResult> foundWiFiHotspots = new ArrayList<>();
 
     private ScanResult chosenMirror;
     private ScanResult chosenNetwork;
+    private mirrorselectFragment fragment;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_setup);
 
         if(!checkPermission()) requestPermission();
-        /*
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
-            WifiUtils.withContext(getApplicationContext()).scanWifi(this::getScanResults).start();
-        }, 0, 10, TimeUnit.SECONDS);
-*/
+
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new SetupAdapter(this));
         viewPager.setUserInputEnabled(false);
     }
 
-    public void setChosenMirror(ScanResult chosenMirror) {
+    public void setChosenMirror(ScanResult chosenMirror, mirrorselectFragment fragment) {
+        this.fragment = fragment;
         this.chosenMirror = chosenMirror;
-    }
-
-    public ScanResult getChosenMirror() {
-        return chosenMirror;
     }
 
     public void setChosenNetwork(ScanResult chosenNetwork) {
         this.chosenNetwork = chosenNetwork;
-    }
-
-    public ScanResult getChosenNetwork() {
-        return chosenNetwork;
-    }
-
-    private void emp() {
-                   /* WifiUtils.withContext(context)
-                    .connectWith(String.valueOf(holder.mirrorName.getText()), "pizzakaas")
-                    .setTimeout(40000)
-                    .onConnectionResult(onConnectionResult()).start();*/
-    }
-
-    public List<ScanResult> getFoundMirrorHotspots() {
-        return foundMirrorHotspots;
-    }
-
-    public List<ScanResult> getFoundWiFiHotspots() {
-        return foundWiFiHotspots;
-    }
-
-    private void getScanResults(@NonNull final List<ScanResult> scanResults) {
-        runOnUiThread(() -> {
-            Toast.makeText(getApplicationContext(), "New wifi search results are in", Toast.LENGTH_SHORT).show();
-        });
-        foundMirrorHotspots =  scanResults
-                .stream()
-           //     .filter(s -> !s.SSID.isEmpty() && s.SSID.startsWith("Eclipse-"))
-                .collect(Collectors.toList());
-
-        foundWiFiHotspots = scanResults
-                .stream()
-                .distinct()
-                .filter(s -> !s.SSID.isEmpty())
-                .collect(Collectors.toList());
-    }
-
-    public ConnectionSuccessListener onConnectionResult() {
-        return new ConnectionSuccessListener() {
-            @Override
-            public void success() {
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.4.1/wifi", response -> {
-                    Log.i("VOLLEY", response);
-//                    fragment.getParentActivity().nextButton();
-                }, error -> Log.e("VOLLEY", error.toString())) {
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8";
-                    }
-
-                    @Override
-                    public byte[] getBody() {
-                        JSONObject jsonBody = new JSONObject();
-                        try {
-                            jsonBody.put("ssid", "Android Volley Demo");
-                            jsonBody.put("password", "BNK");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        return jsonBody.toString().getBytes(StandardCharsets.UTF_8);
-                    }
-                };
-
-                Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
-            }
-            @Override
-            public void failed(@NonNull ConnectionErrorCode errorCode) {
-                Toast.makeText(getApplicationContext(), "EPIC FAIL!" + errorCode, Toast.LENGTH_SHORT).show();
-            }
-        };
     }
 
     private boolean checkPermission() {
@@ -202,8 +123,88 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void executeSetup(String password) {
-        if(chosenMirror != null && chosenNetwork != null) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        builder.setCancelable(false);
+        builder.setView(R.layout.layout_loading_dialog);
+        AlertDialog dialog = builder.create();
+
+        if(chosenMirror != null && chosenNetwork != null) {
+            new Thread(() -> {
+                runOnUiThread(() -> {
+                    dialog.show();
+                    WifiUtils.withContext(getApplicationContext())
+                        .connectWith(chosenNetwork.SSID, password)
+                        .setTimeout(40000)
+                        .onConnectionResult(new ConnectionSuccessListener() {
+                            @Override
+                            public void success() {
+                                Toast.makeText(getApplicationContext(), "CONNECTED TO HOTSPOT", Toast.LENGTH_SHORT).show();
+                                fragment.cancelSearch();
+                                try {
+                                    Thread.sleep(5000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                                WifiUtils.withContext(getApplicationContext())
+                                        .connectWith(chosenMirror.SSID, "pizzakaas")
+                                        .setTimeout(40000)
+                                        .onConnectionResult(new ConnectionSuccessListener() {
+                                            @Override
+                                            public void success() {
+                                                try {
+                                                    Thread.sleep(5000);
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.4.1/wifi", response -> {
+                                                    Log.i("VOLLEY", response);
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response);
+                                                        if(jsonObject.get("status").equals("ok_request")) {
+                                                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                                                            dialog.dismiss();
+                                                            nextButton();
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }, error -> Log.e("VOLLEY", error.toString())) {
+                                                    @Override
+                                                    public String getBodyContentType() {
+                                                        return "application/json; charset=utf-8";
+                                                    }
+
+                                                    @Override
+                                                    public byte[] getBody() {
+                                                        JSONObject jsonBody = new JSONObject();
+                                                        try {
+                                                            jsonBody.put("ssid", chosenNetwork.SSID);
+                                                            jsonBody.put("password", password);
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+
+                                                        return jsonBody.toString().getBytes(StandardCharsets.UTF_8);
+                                                    }
+                                                };
+
+                                                Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+                                            }
+                                            @Override
+                                            public void failed(@NonNull ConnectionErrorCode errorCode) {
+                                                Toast.makeText(getApplicationContext(), "EPIC FAIL!" + errorCode, Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).start();
+                            }
+                            @Override
+                            public void failed(@NonNull ConnectionErrorCode errorCode) {
+                                Toast.makeText(getApplicationContext(), "NO COMPLETE setup!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).start();
+                });
+            }).start();
         }
     }
 }

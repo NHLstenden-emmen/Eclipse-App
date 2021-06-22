@@ -5,21 +5,22 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/vormentaal2">
+        android:background="@drawable/vormentaal2"
+        android:layout_marginBottom="10dp">
 
     <androidx.cardview.widget.CardView
             android:id="@+id/setup1Container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="20dp"
-            android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/selectionLabel">
+            app:layout_constraintBottom_toTopOf="@+id/selectionLabel"
+            android:layout_marginBottom="100dp">
 
         <TextView
                 android:id="@+id/welcomeLabel"
@@ -50,8 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/setup_1"
-                android:layout_marginTop="200dp"
-                />
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +78,7 @@
                 app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
@@ -96,7 +97,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/setup_selected" />
+                    app:srcCompat="@drawable/setup_selected"/>
 
             <ImageView
                     android:id="@+id/selection2"
@@ -107,7 +108,7 @@
                     app:layout_constraintHorizontal_bias="0.25"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/setup_unselected" />
+                    app:srcCompat="@drawable/setup_unselected"/>
 
             <ImageView
                     android:id="@+id/selection3"
@@ -117,7 +118,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/setup_unselected" />
+                    app:srcCompat="@drawable/setup_unselected"/>
 
             <ImageView
                     android:id="@+id/selection4"
@@ -128,7 +129,7 @@
                     app:layout_constraintHorizontal_bias="0.75"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/setup_unselected" />
+                    app:srcCompat="@drawable/setup_unselected"/>
 
             <ImageView
                     android:id="@+id/selection5"
@@ -139,7 +140,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/setup_unselected" />
+                    app:srcCompat="@drawable/setup_unselected"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

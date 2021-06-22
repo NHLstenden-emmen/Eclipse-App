@@ -8,34 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.thanosfisherman.wifiutils.WifiUtils;
 
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class MirrorSetupAdapter extends RecyclerView.Adapter<MirrorSetupAdapter.ViewHolder> {
-    private List<ScanResult> mirrorList;
+    private final List<ScanResult> mirrorList = new ArrayList<>();
     private final mirrorselectFragment fragment;
 
-    public MirrorSetupAdapter(List<ScanResult> mirrorList, mirrorselectFragment fragment) {
-        this.mirrorList = mirrorList;
+    public MirrorSetupAdapter(mirrorselectFragment fragment) {
         this.fragment = fragment;
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
-            WifiUtils.withContext(Objects.requireNonNull(fragment.getContext())).scanWifi(this::getScanResults).start();
-        }, 0, 10, TimeUnit.SECONDS);
-    }
-
-    private void getScanResults(List<ScanResult> scanResults) {
-        mirrorList = scanResults;
-        fragment.getActivity().runOnUiThread(() -> {
-            Toast.makeText(fragment.getContext(), "New MIRROR search results are in", Toast.LENGTH_SHORT).show();
-            notifyDataSetChanged();
-
-        });
     }
 
     @NonNull
@@ -49,7 +32,8 @@ public class MirrorSetupAdapter extends RecyclerView.Adapter<MirrorSetupAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mirrorName.setText(this.mirrorList.get(position).SSID);
         holder.mirrorName.setOnClickListener(v -> {
-            ((SetupActivity) fragment.requireActivity()).setChosenMirror(this.mirrorList.get(position));
+            fragment.cancelSearch();
+            ((SetupActivity) fragment.requireActivity()).setChosenMirror(this.mirrorList.get(position), fragment);
             ((SetupActivity) fragment.requireActivity()).nextButton();
         });
     }
@@ -57,6 +41,11 @@ public class MirrorSetupAdapter extends RecyclerView.Adapter<MirrorSetupAdapter.
     @Override
     public int getItemCount() {
         return this.mirrorList.size();
+    }
+
+    public void updateItems(List<ScanResult> scanResults) {
+            mirrorList.clear();
+            mirrorList.addAll(scanResults);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

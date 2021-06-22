@@ -10,9 +10,9 @@
             android:id="@+id/setup1Container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="100dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@+id/selectionLabel"
@@ -28,26 +28,18 @@
                 android:text="Succes!"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
-                android:textSize="40dp" />
+                android:textSize="40dp"/>
 
         <TextView
                 android:id="@+id/infoLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:text="Your mirror has been named 'Henk'!"
+                android:text="Your mirror has been installed!"
                 android:textAlignment="center"
                 android:textColor="#605F5F"
-                android:textSize="25dp" />
+                android:textSize="25dp"/>
 
-        <ImageView
-                android:id="@+id/setupImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                app:srcCompat="@drawable/welcome" />
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout

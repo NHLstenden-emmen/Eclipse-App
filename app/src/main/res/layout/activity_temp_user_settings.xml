@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TempUserSettings">
+    tools:context=".UserSettings">
 
     <Button
-        android:id="@+id/Logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Logout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@android:color/transparent"
+            android:textColor="@color/orange_dark"
+            android:id="@+id/Logout_button"
+            android:layout_width="match_parent"
+            android:text="Logout"
+            tools:layout_editor_absoluteY="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/userTokenTextview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="90dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logout_button" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

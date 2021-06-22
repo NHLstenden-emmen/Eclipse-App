@@ -1,33 +1,26 @@
 package INF1D.eclipse.settings.widgethandler.widget;
 
+import INF1D.eclipse.common.Mirror;
+import INF1D.eclipse.common.MirrorSocket;
 import INF1D.eclipse.R;
-import INF1D.eclipse.discovery.Mirror;
-import INF1D.eclipse.settings.widgethandler.WidgetHandlerActivity;
+import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridAdapter;
 import android.os.Bundle;
-import android.service.quicksettings.Tile;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.*;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.*;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class WidgetSettings extends PreferenceFragmentCompat {
     private HashMap<String, DataProvider.TileData> availableWidgets;
@@ -35,27 +28,29 @@ public class WidgetSettings extends PreferenceFragmentCompat {
     private Mirror selectedMirror;
     private widgetSettingsActivity activity;
     private int clickedPositionIndex;
+    private PrefManager prefManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.widget_prefs);
-
+        prefManager = new PrefManager(getContext());
         if(getActivity() != null) {
-            activity = ((widgetSettingsActivity) getActivity());
+            activity                = ((widgetSettingsActivity) getActivity());
 
-            selectedMirror = activity.getMirror();
-            currentTileData = activity.getSelectedTileData();
-            availableWidgets = activity.getWidgetList();
-            clickedPositionIndex = activity.getCurrentPosition();
-
-            Toast.makeText(getContext(), "WIDGETS LOADED FROM API " + availableWidgets.size(), Toast.LENGTH_SHORT).show();
+            selectedMirror          = activity.getMirror();
+            currentTileData         = activity.getSelectedTileData();
+            availableWidgets        = activity.getWidgetList();
+            clickedPositionIndex    = activity.getCurrentPosition();
         }
 
         final ListPreference listPreference = findPreference("widget");
+        final PreferenceCategory preferenceCategory = findPreference("prefCat");
+
         if (listPreference != null) {
             setListPreferenceData(listPreference);
             listPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+
                 DataProvider.TileData selectedWidget = availableWidgets.get(newValue.toString().toLowerCase());
                 if(selectedWidget != null) {
 
@@ -68,52 +63,82 @@ public class WidgetSettings extends PreferenceFragmentCompat {
                         selectedViewHolder.mIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), selectedDrawable, null));
                     }
 
-                    if(selectedWidget.hasParams()) {
-                        System.out.println("THIS WIDGET REQUIRES PARAMETERS, MAKE A NEW PREFERENCE");
+                    if(preferenceCategory != null) {
+                        if (selectedWidget.hasParams()) {
+                            if(findPreference("City") != null) {
+                                preferenceCategory.removePreference(findPreference("City"));
+                            }
+                            try {
+                                JSONArray test = new JSONArray(selectedWidget.getParams());
+                                EditTextPreference pref = new EditTextPreference(Objects.requireNonNull(getContext()));
+                                String param = test.getString(0);
+
+                                pref.setTitle(param);
+                                pref.setDefaultValue(null);
+                                pref.setSummary("Weatherwidget requires an selected City");
+                                pref.setKey(param);
+                                pref.setDialogTitle(param);
+                                pref.setOnPreferenceChangeListener(this::paramSave);
+                                preferenceCategory.addPreference(pref);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
+
                return true;
             });
         }
 
-//        final PreferenceCategory preferenceCategory = findPreference("prefCat");
         final Preference removeButton = findPreference("remove");
-                if(removeButton != null) {
-                    removeButton.setOnPreferenceClickListener(preference -> {
-                        Objects.requireNonNull(getActivity()).onBackPressed();
-                        return true;
-                    });
+        if(removeButton != null) {
+            removeButton.setOnPreferenceClickListener(preference -> {
+                DraggableGridAdapter.MyViewHolder selectedViewHolder = DraggableGridAdapter.getItemHolders().get(clickedPositionIndex);
+                if (selectedViewHolder != null) {
+                    selectedViewHolder.mIcon.setImageDrawable(null);
                 }
+                DataProvider.mData.put(clickedPositionIndex, new DataProvider.TileData("empty"));
+                requireActivity().onBackPressed();
+                return true;
+            });
+        }
+    }
+
+    private boolean paramSave(Preference preference, Object selectedCity) {
+        String weatherEndpoint = "http://eclipse.serverict.nl/api/weather?city=" + selectedCity;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, weatherEndpoint, null, response -> {
+            try {
+                JSONObject jsonObject = new JSONObject()
+                                            .put("type", "weather_city")
+                                            .put("city_id", response.getInt("cityID"));
+                MirrorSocket.sendToMirror(String.valueOf(jsonObject));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Toast.makeText(getContext(), "This city is not valid!", Toast.LENGTH_SHORT).show())
+        {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + prefManager.getUserToken());
+                return headers;
+            }};
+
+        Volley.newRequestQueue(Objects.requireNonNull(getContext())).add(jsonObjectRequest);
+        return true;
     }
 
     @Override
     public void onStop() {
-        try {
-            selectedMirror.sendJSONToMirror(parseJSON());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        selectedMirror.sendJSONToMirror(MirrorSocket.parseTileDataToJSON());
         super.onStop();
     }
 
-    private JSONObject parseJSON() throws JSONException {
-        JSONObject jsonObject = new JSONObject().put("type", "new_widget");
-
-        DraggableGridAdapter.getDataProvider().getmData().forEach(w -> {
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.put(w.type);
-            try { jsonObject.put(String.valueOf(w.getId()), jsonArray); }
-             catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
-        //TODO SENT TO MIRROR
-
-        return jsonObject;
-    }
-
     private void setListPreferenceData(ListPreference listPreference) {
-        CharSequence[] newEntry = availableWidgets.values().stream().map(tileData -> Character.toUpperCase(tileData.type.charAt(0)) + tileData.type.substring(1)).toArray(CharSequence[]::new);
+        CharSequence[] newEntry = availableWidgets.values().stream().map(tileData -> Character.toUpperCase(tileData.displayName.charAt(0)) + tileData.displayName.substring(1)).toArray(CharSequence[]::new);
         availableWidgets.forEach((key, value) -> System.out.println(key));
         listPreference.setEntries(newEntry);
         listPreference.setEntryValues(newEntry);

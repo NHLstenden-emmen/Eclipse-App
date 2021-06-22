@@ -1,7 +1,7 @@
 package INF1D.eclipse.settings.widgethandler.data;
 
+import INF1D.eclipse.common.Mirror;
 import INF1D.eclipse.R;
-import INF1D.eclipse.discovery.Mirror;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -15,12 +15,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class DataProvider extends Fragment implements Serializable {
     private Mirror selectedMirror;
+    private HashMap<Integer, String> userSettingsAPI = new HashMap<>();
+    public static final HashMap<Integer, TileData> mData = new HashMap<>();
 
-    private final List<TileData> mData = new LinkedList<>();
     private final HashMap<String, DataProvider.TileData> availableWidgets = new HashMap<>();
     private final String widgetsEndpoint = "http://eclipse.serverict.nl/api/widgets";
 
@@ -29,23 +32,27 @@ public class DataProvider extends Fragment implements Serializable {
         super.onCreate(savedInstanceState);
 
         getWidgetsFromAPI();
-
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 9; j++) {
-                final int id = mData.size();
-                mData.add(id, new TileData(id, "empty"));
-            }
-        }
-
+        mData.clear();
         if (getArguments() != null) {
             selectedMirror = (Mirror) getArguments().getSerializable("selectedMirror");
-         //   mAdapter = ((DraggableGridFragment) getArguments().getSerializable("draggableGridFragment")).getmAdapter();
-            //  findPreference("serialnmbr").setTitle(selectedMirror.serialNo);
-            // findPreference("ip").setTitle(selectedMirror.IP.getHostAddress());
+            userSettingsAPI = (HashMap<Integer, String>) getArguments().getSerializable("userSettings");
+
+            if(userSettingsAPI.size() != 0) {
+                userSettingsAPI.forEach((i, s) -> mData.put(i, new TileData(i, s)));
+            } else defaultValues();
         }
     }
 
-    public List<TileData> getmData() {
+    private void defaultValues() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                final int id = mData.size();
+                mData.put(id, new TileData(id, "empty"));
+            }
+        }
+    }
+
+    public HashMap<Integer, TileData> getmData() {
         return mData;
     }
 
@@ -63,19 +70,23 @@ public class DataProvider extends Fragment implements Serializable {
 
     public void swapItem(int fromPosition, int toPosition) {
         if (fromPosition == toPosition) return;
+        TileData fromPositionTile = mData.get(fromPosition);
+        TileData toPositionTile = mData.get(toPosition);
+        mData.replace(fromPosition, toPositionTile);
+        mData.replace(toPosition, fromPositionTile);
 
-        Collections.swap(mData, toPosition, fromPosition);
+      //  Collections.swap(mData, toPosition, fromPosition);
+    }
+
+    public static void emptyItem(int clickedPosition) {
+        mData.replace(clickedPosition, new TileData("empty"));
     }
 
     public void replaceItem(int clickedPositionIndex, TileData selectedWidgetTile) {
-        mData.remove(clickedPositionIndex);
-        mData.add(clickedPositionIndex, selectedWidgetTile);
-
-        System.out.println("SET " + mData.get(clickedPositionIndex).getType());
+        mData.replace(clickedPositionIndex, selectedWidgetTile);
     }
 
-    public DataProvider getDataProvider()
-    {
+    public DataProvider getDataProvider() {
         return this;
     }
 
@@ -85,16 +96,15 @@ public class DataProvider extends Fragment implements Serializable {
             json.add(response.getJSONObject(i));
             for (JSONObject jsonObject : json) {
                 if(!jsonObject.getString("params").equals("null")) {
-                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), new JSONArray(jsonObject.getString("params"))));
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), jsonObject.getString("display_name"), jsonObject.getString("params")));
                 } else {
-                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type")));
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), jsonObject.getString("display_name")));
                 }
             }
         }
     }
 
     private void getWidgetsFromAPI() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
 
         builder.setCancelable(false);
@@ -117,11 +127,6 @@ public class DataProvider extends Fragment implements Serializable {
         }).start();
     }
 
-    private void parseUserSettings(JSONArray response) {
-
-    }
-
-
     public HashMap<String, TileData> getAvailableWidgets() {
         return availableWidgets;
     }
@@ -132,18 +137,15 @@ public class DataProvider extends Fragment implements Serializable {
 
     public static final class TileData implements Serializable  {
         public String type;
-        public JSONArray params = null;
+        public String displayName;
+        public String params = "";
         public int mId;
         public int icon;
 
-        public TileData(String type, JSONArray params) {
+        public TileData(String type, String displayName, String params) {
             this.type = type;
+            this.displayName = displayName;
             this.params = params;
-            this.icon = parseIcon();
-        }
-
-        public TileData(String type) {
-            this.type = type;
             this.icon = parseIcon();
         }
 
@@ -152,8 +154,14 @@ public class DataProvider extends Fragment implements Serializable {
             this.type = type;
         }
 
-        public void setType(String type) {
+        public TileData(String type) {
             this.type = type;
+            this.icon = parseIcon();
+        }
+
+        public TileData(String type, String displayName) {
+            this.type = type;
+            this.displayName = displayName;
         }
 
         public String getType() {
@@ -161,14 +169,14 @@ public class DataProvider extends Fragment implements Serializable {
         }
 
         public boolean hasParams() {
-            return params != null;
+            return params.length() != 0;
         }
 
-        public void setParams(JSONArray params) {
+        public void setParams(String params) {
             this.params = params;
         }
 
-        public JSONArray getParams()
+        public String getParams()
         {
             return this.params;
         }
@@ -177,16 +185,17 @@ public class DataProvider extends Fragment implements Serializable {
             return mId;
         }
 
+        public String getDisplayName() {
+            return displayName;
+        }
+
         public int parseIcon() {
             switch(getType()) {
-                default:
+                case "weather":
                     return R.drawable.weather;
+                default:
+                    return android.R.color.transparent;
             }
         }
-
-        public int getIcon() {
-            return this.icon;
-        }
-
     }
 }

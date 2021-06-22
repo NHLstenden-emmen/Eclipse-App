@@ -1,7 +1,6 @@
 package INF1D.eclipse.settings.widgethandler.draggable;
 
 import INF1D.eclipse.R;
-import INF1D.eclipse.discovery.Mirror;
 import INF1D.eclipse.settings.widgethandler.WidgetHandlerActivity;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import android.graphics.drawable.NinePatchDrawable;
@@ -106,9 +105,5 @@ public class DraggableGridFragment extends Fragment implements Serializable {
 
     public Fragment getDataProvider() {
         return ((WidgetHandlerActivity) requireActivity()).getDataProvider();
-    }
-
-    public DraggableGridAdapter getmAdapter() {
-        return this.mAdapter;
     }
 }

@@ -10,22 +10,22 @@
             android:id="@+id/setup1Container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="20dp"
             android:layout_marginBottom="100dp"
             app:layout_constraintBottom_toTopOf="@+id/selectionLabel"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
         <TextView
                 android:id="@+id/titleLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Select a mirror"
+                android:text="Select Mirror"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="40dp"/>

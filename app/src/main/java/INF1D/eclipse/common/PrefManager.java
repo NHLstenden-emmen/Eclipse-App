@@ -11,6 +11,7 @@ public class PrefManager {
 
     private final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
     private final String USER_TOKEN = "userToken";
+    private final String USER_ID = "userID";
 
     @SuppressLint("CommitPrefEdits")
     public PrefManager(Context context) {
@@ -40,4 +41,14 @@ public class PrefManager {
     public boolean isUserLoggedIn() {
         return pref.getString(USER_TOKEN, null) != null;
     }
+
+    public void setUserID(int userID) {
+        editor.putInt(USER_ID, userID);
+        editor.commit();
+    }
+
+    public int getUserID() {
+        return pref.getInt(USER_ID, -1);
+    }
+
 }
