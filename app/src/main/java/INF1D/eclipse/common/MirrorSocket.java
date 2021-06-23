@@ -32,11 +32,21 @@ public class MirrorSocket {
         }
     }
 
-    public static JSONObject parseTileDataToJSON() {
+    public static JSONObject parseTileDataToJSON()  {
         JSONObject jsonObject = new JSONObject();
         DataProvider.mData.forEach((k, w) -> {
             JSONArray jsonArray = new JSONArray();
             jsonArray.put(w.type);
+            if(w.hasParams()) {
+                try {
+                    JSONArray jsonArray1 = new JSONArray(w.params);
+                    for (int i = 0; i < jsonArray1.length(); i++) {
+                        jsonArray.put(jsonArray1.get(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
             try {
                 jsonObject.put(String.valueOf(k), jsonArray);
             }
@@ -44,7 +54,7 @@ public class MirrorSocket {
                 e.printStackTrace();
             }
         });
-
+        System.out.println(jsonObject);
         return jsonObject;
     }
 

@@ -1,7 +1,7 @@
 package INF1D.eclipse.settings.widgethandler.draggable;
 
-import INF1D.eclipse.common.MirrorSocket;
 import INF1D.eclipse.R;
+import INF1D.eclipse.common.MirrorSocket;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import INF1D.eclipse.settings.widgethandler.widget.widgetSettingsActivity;
 import android.content.Context;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +19,6 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemState;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemViewHolder;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -93,35 +89,10 @@ public class DraggableGridAdapter extends RecyclerView.Adapter<DraggableGridAdap
         return mProvider.getCount();
     }
 
-    private JSONObject parseJSON() throws JSONException {
-        JSONObject jsonObject = new JSONObject().put("type", "new_widget");
-        MirrorSocket.parseTileDataToJSON();
-        DraggableGridAdapter.getDataProvider().getmData().forEach((i, w) -> {
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.put(w.type);
-            try {
-                jsonObject.put(String.valueOf(w.getId()), jsonArray);
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
-        //TODO SENT TO MIRROR
-
-        return jsonObject;
-    }
-
-
     @Override
     public void onMoveItem(int fromPosition, int toPosition) {
-
-        Toast.makeText(mProvider.getContext(), "onMoveItem(fromPosition = " + fromPosition + ", toPosition = " + toPosition, Toast.LENGTH_SHORT).show();
         mProvider.swapItem(fromPosition, toPosition);
-        try {
-            mProvider.getSelectedMirror().sendJSONToMirror(parseJSON());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        mProvider.getSelectedMirror().sendJSONToMirror(MirrorSocket.parseTileDataToJSON());
     }
 
 

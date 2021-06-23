@@ -1,22 +1,26 @@
 package INF1D.eclipse.settings.widgethandler.widget;
 
-import INF1D.eclipse.common.Mirror;
-import INF1D.eclipse.common.MirrorSocket;
 import INF1D.eclipse.R;
+import INF1D.eclipse.common.Mirror;
 import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridAdapter;
 import android.os.Bundle;
+import android.text.InputType;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.preference.*;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragmentCompat;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,103 +49,142 @@ public class WidgetSettings extends PreferenceFragmentCompat {
         }
 
         final ListPreference listPreference = findPreference("widget");
-        final PreferenceCategory preferenceCategory = findPreference("prefCat");
 
         if (listPreference != null) {
             setListPreferenceData(listPreference);
-            listPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if(!currentTileData.type.equals("empty")) {
+                listPreference.setValue(currentTileData.type);
+                setParamsField(availableWidgets.get(String.valueOf(currentTileData.type).toLowerCase()));
+            } else listPreference.setValueIndex(0);
 
-                DataProvider.TileData selectedWidget = availableWidgets.get(newValue.toString().toLowerCase());
-                if(selectedWidget != null) {
-
-                    DataProvider.TileData newWidget = new DataProvider.TileData(clickedPositionIndex, selectedWidget.type);
-                    DraggableGridAdapter.getDataProvider().replaceItem(clickedPositionIndex, newWidget);
-                    DraggableGridAdapter.MyViewHolder selectedViewHolder = DraggableGridAdapter.getItemHolders().get(clickedPositionIndex);
-
-                    if(selectedViewHolder != null) {
-                        int selectedDrawable = selectedWidget.parseIcon();
-                        selectedViewHolder.mIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), selectedDrawable, null));
-                    }
-
-                    if(preferenceCategory != null) {
-                        if (selectedWidget.hasParams()) {
-                            if(findPreference("City") != null) {
-                                preferenceCategory.removePreference(findPreference("City"));
-                            }
-                            try {
-                                JSONArray test = new JSONArray(selectedWidget.getParams());
-                                EditTextPreference pref = new EditTextPreference(Objects.requireNonNull(getContext()));
-                                String param = test.getString(0);
-
-                                pref.setTitle(param);
-                                pref.setDefaultValue(null);
-                                pref.setSummary("Weatherwidget requires an selected City");
-                                pref.setKey(param);
-                                pref.setDialogTitle(param);
-                                pref.setOnPreferenceChangeListener(this::paramSave);
-                                preferenceCategory.addPreference(pref);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
-
-               return true;
-            });
+            listPreference.setOnPreferenceChangeListener(this::onPrefChangeListener);
         }
 
         final Preference removeButton = findPreference("remove");
         if(removeButton != null) {
             removeButton.setOnPreferenceClickListener(preference -> {
-                DraggableGridAdapter.MyViewHolder selectedViewHolder = DraggableGridAdapter.getItemHolders().get(clickedPositionIndex);
-                if (selectedViewHolder != null) {
-                    selectedViewHolder.mIcon.setImageDrawable(null);
-                }
-                DataProvider.mData.put(clickedPositionIndex, new DataProvider.TileData("empty"));
+                removeCurrentWidget();
                 requireActivity().onBackPressed();
                 return true;
             });
         }
     }
 
-    private boolean paramSave(Preference preference, Object selectedCity) {
-        String weatherEndpoint = "http://eclipse.serverict.nl/api/weather?city=" + selectedCity;
+    private boolean onPrefChangeListener(Preference preference, Object newValue) {
+        DataProvider.TileData selectedWidget = availableWidgets.get(String.valueOf(newValue).toLowerCase());
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, weatherEndpoint, null, response -> {
-            try {
-                JSONObject jsonObject = new JSONObject()
-                                            .put("type", "weather_city")
-                                            .put("city_id", response.getInt("cityID"));
-                MirrorSocket.sendToMirror(String.valueOf(jsonObject));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        if(selectedWidget != null) {
+                DataProvider.TileData newWidget = new DataProvider.TileData(clickedPositionIndex, selectedWidget.type);
+                DraggableGridAdapter.MyViewHolder selectedViewHolder = DraggableGridAdapter.getItemHolders().get(clickedPositionIndex);
+
+                if(selectedViewHolder != null) {
+                    int selectedDrawable = selectedWidget.parseIcon();
+                    selectedViewHolder.mIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), selectedDrawable, null));
+                }
+
+                if(selectedWidget.hasParams()) {
+                    setParamsField(selectedWidget);
+                } else {
+                    DraggableGridAdapter.getDataProvider().replaceItem(clickedPositionIndex, selectedWidget);
+                }
+
             }
-        }, error -> Toast.makeText(getContext(), "This city is not valid!", Toast.LENGTH_SHORT).show())
-        {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", "Bearer " + prefManager.getUserToken());
-                return headers;
-            }};
 
-        Volley.newRequestQueue(Objects.requireNonNull(getContext())).add(jsonObjectRequest);
-        return true;
+            return true;
     }
 
-    @Override
-    public void onStop() {
-        selectedMirror.sendJSONToMirror(MirrorSocket.parseTileDataToJSON());
-        super.onStop();
+    private void setParamsField(DataProvider.TileData selectedWidget) {
+        final PreferenceCategory preferenceCategory = findPreference("paramsCat");
+        if(preferenceCategory != null) {
+            preferenceCategory.removeAll();
+            if (selectedWidget.hasParams()) {
+                try {
+                    JSONArray paramsArray = new JSONArray(selectedWidget.getParams());
+                    Preference pref = new Preference(Objects.requireNonNull(getContext()));
+                    pref.setTitle(paramsArray.getString(0));
+                    if(currentTileData.hasParams()) {
+                        JSONArray jsonArray = new JSONArray(currentTileData.params);
+                        pref.setOnPreferenceClickListener(paramOnclick(selectedWidget, jsonArray.getString(2)));
+                    }
+
+                    preferenceCategory.addPreference(pref);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private Preference.OnPreferenceClickListener paramOnclick(DataProvider.TileData selectedWidget, String cityName) {
+        return preference -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                EditText input = new EditText(getContext());
+
+                if(cityName != null) {
+                    input.setText(cityName);
+                }
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setMessage("Enter a city");
+                builder.setPositiveButton("Save", (dialog, which) -> { });
+                builder.setNegativeButton("Cancel", ((dialog, which) -> {
+                    removeCurrentWidget();
+                    requireActivity().onBackPressed();
+                }));
+                builder.setView(input);
+                builder.setCancelable(false);
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
+
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                    String weatherEndpoint = "http://eclipse.serverict.nl/api/weather?city=" + input.getText();
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, weatherEndpoint, null, response -> {
+                        try {
+                            response.getInt("cityID");
+                            JSONArray jsonArray = new JSONArray()
+                                                    .put(response.getInt("cityID"))
+                                                    .put(input.getText());
+                            dialog.dismiss();
+                            Toast.makeText(getContext(), "City saved!", Toast.LENGTH_SHORT).show();
+                            selectedWidget.setParams(String.valueOf(jsonArray));
+                            DraggableGridAdapter.getDataProvider().replaceItem(clickedPositionIndex, selectedWidget);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }, error -> {
+                        Toast.makeText(getContext(), "This city is not valid, try again!", Toast.LENGTH_SHORT).show();
+                    }) {
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            Map<String, String> headers = new HashMap<>();
+                            headers.put("Content-Type", "application/json");
+                            headers.put("Authorization", "Bearer " + prefManager.getUserToken());
+                            return headers;
+                        }
+                    };
+
+                    Volley.newRequestQueue(Objects.requireNonNull(getContext())).add(jsonObjectRequest);
+                });
+            return true;
+        };
+    }
+
+    private void removeCurrentWidget() {
+        DraggableGridAdapter.MyViewHolder selectedViewHolder = DraggableGridAdapter.getItemHolders().get(clickedPositionIndex);
+        if (selectedViewHolder != null) {
+            selectedViewHolder.mIcon.setImageDrawable(null);
+        }
+        DataProvider.mData.put(clickedPositionIndex, new DataProvider.TileData("empty"));
     }
 
     private void setListPreferenceData(ListPreference listPreference) {
+        CharSequence[] entryValues = availableWidgets.values().stream().map(tileData -> tileData.type).toArray(CharSequence[]::new);
         CharSequence[] newEntry = availableWidgets.values().stream().map(tileData -> Character.toUpperCase(tileData.displayName.charAt(0)) + tileData.displayName.substring(1)).toArray(CharSequence[]::new);
-        availableWidgets.forEach((key, value) -> System.out.println(key));
+        availableWidgets.forEach((key, value) -> System.out.println(key + "\t" + value.type));
         listPreference.setEntries(newEntry);
-        listPreference.setEntryValues(newEntry);
+        listPreference.setEntryValues(entryValues);
     }
 
     @Override

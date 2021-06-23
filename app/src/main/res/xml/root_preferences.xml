@@ -12,21 +12,8 @@
     <PreferenceCategory
             app:title="Mirror">
         <Preference
-                app:key="serialnmbr"
-                app:title="SERIALNUMBER"
-                android:enabled="false"
-                android:summary="Serial No."
-                /><!-- DEBUG -->
-        <Preference
-                app:key="ip"
-                app:title=""
-                android:enabled="false"
-                android:summary="IP Address"
-                /><!-- DEBUG -->
-        <CheckBoxPreference
-                android:defaultValue="true"
-                android:title="Timeout"
-                android:summary="Automatically time out the screen after no motion has been detected"
-                android:key="timeout"/>
+                app:key="rgb"
+                app:title="LED Strip"
+                android:summary="Manage your RGB LED Strip!"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -1,8 +1,8 @@
 package INF1D.eclipse.settings.widgethandler;
 
+import INF1D.eclipse.R;
 import INF1D.eclipse.common.Mirror;
 import INF1D.eclipse.common.MirrorSocket;
-import INF1D.eclipse.R;
 import INF1D.eclipse.common.PrefManager;
 import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import INF1D.eclipse.settings.widgethandler.draggable.DraggableGridFragment;
@@ -26,7 +26,7 @@ import java.util.Objects;
 public class WidgetHandlerActivity extends AppCompatActivity {
     private Mirror selectedMirror;
     private PrefManager prefManager;
-    private HashMap<Integer, String> userSettingsAPI;
+    private HashMap<Integer, DataProvider.TileData> userSettingsAPI;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,7 +45,7 @@ public class WidgetHandlerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_widgethandler);
 
         selectedMirror = (Mirror) getIntent().getSerializableExtra("selectedMirror");
-        userSettingsAPI = (HashMap<Integer, String>) getIntent().getSerializableExtra("userSettings");
+        userSettingsAPI = (HashMap<Integer, DataProvider.TileData>) getIntent().getSerializableExtra("userSettings");
         selectedMirror.openWebSocket();
         prefManager = new PrefManager(getApplicationContext());
 

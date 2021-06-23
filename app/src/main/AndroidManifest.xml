@@ -36,6 +36,7 @@
         <activity android:name=".settings.widgethandler.WidgetHandlerActivity" android:screenOrientation="portrait" />
         <activity android:name=".setup.SetupActivity" android:theme="@style/Theme.Eclipse.NoActionBar" android:windowSoftInputMode="adjustNothing" android:screenOrientation="portrait"/>
         <activity android:name=".UserSettings" android:screenOrientation="portrait" />
+        <activity android:name=".settings.ColorWheel" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

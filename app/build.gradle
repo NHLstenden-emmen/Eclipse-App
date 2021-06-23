@@ -43,7 +43,7 @@ android {
 
 dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-
+    implementation "com.github.skydoves:colorpickerpreference:2.0.5"
     implementation 'com.thanosfisherman.wifiutils:wifiutils:1.6.5'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'

@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class DataProvider extends Fragment implements Serializable {
     private Mirror selectedMirror;
-    private HashMap<Integer, String> userSettingsAPI = new HashMap<>();
+    private HashMap<Integer, TileData> userSettingsAPI = new HashMap<>();
     public static final HashMap<Integer, TileData> mData = new HashMap<>();
 
     private final HashMap<String, DataProvider.TileData> availableWidgets = new HashMap<>();
@@ -35,11 +35,12 @@ public class DataProvider extends Fragment implements Serializable {
         mData.clear();
         if (getArguments() != null) {
             selectedMirror = (Mirror) getArguments().getSerializable("selectedMirror");
-            userSettingsAPI = (HashMap<Integer, String>) getArguments().getSerializable("userSettings");
+            userSettingsAPI = (HashMap<Integer, TileData>) getArguments().getSerializable("userSettings");
 
             if(userSettingsAPI.size() != 0) {
-                userSettingsAPI.forEach((i, s) -> mData.put(i, new TileData(i, s)));
+                userSettingsAPI.forEach(mData::put);
             } else defaultValues();
+
         }
     }
 
@@ -72,9 +73,8 @@ public class DataProvider extends Fragment implements Serializable {
         if (fromPosition == toPosition) return;
         TileData fromPositionTile = mData.get(fromPosition);
         TileData toPositionTile = mData.get(toPosition);
-        mData.replace(fromPosition, toPositionTile);
-        mData.replace(toPosition, fromPositionTile);
-
+        mData.put(fromPosition, toPositionTile);
+        mData.put(toPosition, fromPositionTile);
       //  Collections.swap(mData, toPosition, fromPosition);
     }
 
@@ -96,9 +96,9 @@ public class DataProvider extends Fragment implements Serializable {
             json.add(response.getJSONObject(i));
             for (JSONObject jsonObject : json) {
                 if(!jsonObject.getString("params").equals("null")) {
-                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), jsonObject.getString("display_name"), jsonObject.getString("params")));
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(i, jsonObject.getString("type"), jsonObject.getString("display_name"), jsonObject.getString("params")));
                 } else {
-                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(jsonObject.getString("type"), jsonObject.getString("display_name")));
+                    availableWidgets.put(jsonObject.getString("type").toLowerCase(), new DataProvider.TileData(0.0, jsonObject.getString("type"), jsonObject.getString("display_name")));
                 }
             }
         }
@@ -138,11 +138,11 @@ public class DataProvider extends Fragment implements Serializable {
     public static final class TileData implements Serializable  {
         public String type;
         public String displayName;
-        public String params = "";
+        public String params = null;
         public int mId;
         public int icon;
 
-        public TileData(String type, String displayName, String params) {
+        public TileData(int id, String type, String displayName, String params) {
             this.type = type;
             this.displayName = displayName;
             this.params = params;
@@ -152,6 +152,7 @@ public class DataProvider extends Fragment implements Serializable {
         public TileData(int id, String type) {
             this.mId = id;
             this.type = type;
+            this.icon = parseIcon();
         }
 
         public TileData(String type) {
@@ -159,9 +160,17 @@ public class DataProvider extends Fragment implements Serializable {
             this.icon = parseIcon();
         }
 
-        public TileData(String type, String displayName) {
+        public TileData(int id, String type, String params) {
+            this.mId = id;
+            this.type = type;
+            this.params = params;
+            this.icon = parseIcon();
+        }
+
+        public TileData(double id, String type, String displayName) {
             this.type = type;
             this.displayName = displayName;
+            this.icon = parseIcon();
         }
 
         public String getType() {
@@ -169,7 +178,7 @@ public class DataProvider extends Fragment implements Serializable {
         }
 
         public boolean hasParams() {
-            return params.length() != 0;
+            return params != null;
         }
 
         public void setParams(String params) {

@@ -1,9 +1,10 @@
 package INF1D.eclipse.settings;
 
+import INF1D.eclipse.R;
 import INF1D.eclipse.common.Mirror;
 import INF1D.eclipse.common.MirrorSocket;
-import INF1D.eclipse.R;
 import INF1D.eclipse.common.PrefManager;
+import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +24,7 @@ import java.util.Objects;
 
 public class MirrorSettingsActivity extends AppCompatActivity {
     private final String userSettingsEndpoint = "http://eclipse.serverict.nl/api/user_settings/search/";
-    private HashMap<Integer, String> userSettingsAPI = new HashMap<>();
+    private HashMap<Integer, DataProvider.TileData> userSettingsAPI = new HashMap<>();
     private PrefManager prefManager;
     private AlertDialog dialog;
 
@@ -98,9 +100,13 @@ public class MirrorSettingsActivity extends AppCompatActivity {
             Iterator<String> keys = response.keys();
             while(keys.hasNext()) {
                 String dynamicKey = keys.next();
-                String line = response.getJSONArray(dynamicKey).getString(0);
-
-                userSettingsAPI.put(Integer.parseInt(dynamicKey), line);
+                String type = response.getJSONArray(dynamicKey).getString(0);
+                JSONArray test = response.getJSONArray(dynamicKey);
+                if(response.getJSONArray(dynamicKey).length() > 1) {
+                    userSettingsAPI.put(Integer.parseInt(dynamicKey), new DataProvider.TileData(Integer.parseInt(dynamicKey), type, String.valueOf(response.getJSONArray(dynamicKey))));
+                } else {
+                    userSettingsAPI.put(Integer.parseInt(dynamicKey), new DataProvider.TileData(Integer.parseInt(dynamicKey), type));
+                }
             }
         } else {
             userSettingsAPI = new HashMap<>();
