@@ -173,6 +173,10 @@ public class DataProvider extends Fragment implements Serializable {
             this.icon = parseIcon();
         }
 
+        public void setType(String type) {
+            this.type = type;
+        }
+
         public String getType() {
             return type;
         }
@@ -200,6 +204,21 @@ public class DataProvider extends Fragment implements Serializable {
 
         public int parseIcon() {
             switch(getType()) {
+                case "meme_of_the_day":
+                    return R.drawable.star;
+                case "news":
+                case "news_business":
+                case "news_entertainment":
+                case "news_general":
+                case "news_health":
+                case "news_science":
+                case "news_sports":
+                case "news_technology":
+                    return R.drawable.news;
+                case "joke_of_day":
+                    return R.drawable.geek_jokes;
+                case "cat_fact":
+                    return R.drawable.cat_joke;
                 case "weather":
                     return R.drawable.weather;
                 default:

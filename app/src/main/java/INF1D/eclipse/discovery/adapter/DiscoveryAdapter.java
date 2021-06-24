@@ -1,20 +1,22 @@
 package INF1D.eclipse.discovery.adapter;
 
-import INF1D.eclipse.common.Mirror;
-import INF1D.eclipse.R;
-import INF1D.eclipse.common.PrefManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import INF1D.eclipse.settings.MirrorSettingsActivity;
+
 import java.util.List;
 import java.util.Objects;
+
+import INF1D.eclipse.R;
+import INF1D.eclipse.common.Mirror;
+import INF1D.eclipse.common.PrefManager;
+import INF1D.eclipse.settings.MirrorSettingsActivity;
 
 public class DiscoveryAdapter extends RecyclerView.Adapter<DiscoveryAdapter.ViewHolder> {
     public final List<Mirror> data;
@@ -56,14 +58,14 @@ public class DiscoveryAdapter extends RecyclerView.Adapter<DiscoveryAdapter.View
 
         private void openSettings(View view) {
             PrefManager prefManager = new PrefManager(context);
-            if(prefManager.isUserLoggedIn()) {
+            //if(prefManager.isUserLoggedIn()) {
                 Intent intent = new Intent(context, MirrorSettingsActivity.class);
                 intent.putExtra("selectedMirror", selectedMirror);
 
                 context.startActivity(intent);
-            } else {
-                Toast.makeText(context, "Please log in to change the settings of your mirror!", Toast.LENGTH_LONG).show();
-            }
+          //  } else {
+              //  Toast.makeText(context, "Please log in to change the settings of your mirror!", Toast.LENGTH_LONG).show();
+         //   }
         }
     }
 }

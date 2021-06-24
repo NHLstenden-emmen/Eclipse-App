@@ -1,11 +1,17 @@
 package INF1D.eclipse.common;
 
-import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import androidx.annotation.NonNull;
-import okhttp3.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import INF1D.eclipse.settings.widgethandler.data.DataProvider;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
 
 public class MirrorSocket {
     public static WebSocket webSocket;
@@ -38,14 +44,7 @@ public class MirrorSocket {
             JSONArray jsonArray = new JSONArray();
             jsonArray.put(w.type);
             if(w.hasParams()) {
-                try {
-                    JSONArray jsonArray1 = new JSONArray(w.params);
-                    for (int i = 0; i < jsonArray1.length(); i++) {
-                        jsonArray.put(jsonArray1.get(i));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
             }
             try {
                 jsonObject.put(String.valueOf(k), jsonArray);

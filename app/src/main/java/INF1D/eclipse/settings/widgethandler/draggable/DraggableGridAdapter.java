@@ -1,9 +1,5 @@
 package INF1D.eclipse.settings.widgethandler.draggable;
 
-import INF1D.eclipse.R;
-import INF1D.eclipse.common.MirrorSocket;
-import INF1D.eclipse.settings.widgethandler.data.DataProvider;
-import INF1D.eclipse.settings.widgethandler.widget.widgetSettingsActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemState;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
@@ -22,7 +20,11 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemView
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Objects;
+
+import INF1D.eclipse.R;
+import INF1D.eclipse.common.MirrorSocket;
+import INF1D.eclipse.settings.widgethandler.data.DataProvider;
+import INF1D.eclipse.settings.widgethandler.widget.widgetSettingsActivity;
 
 public class DraggableGridAdapter extends RecyclerView.Adapter<DraggableGridAdapter.MyViewHolder> implements DraggableItemAdapter<DraggableGridAdapter.MyViewHolder>, Serializable {
     private static final String TAG = "MyDraggableItemAdapter";
@@ -80,7 +82,7 @@ public class DraggableGridAdapter extends RecyclerView.Adapter<DraggableGridAdap
             widgetSettingsActivity.putExtra("position", clickedPosition);
             widgetSettingsActivity.putExtra("dataProvider", mProvider);
 
-            Objects.requireNonNull(mProvider.getContext()).getApplicationContext().startActivity(widgetSettingsActivity);
+            mProvider.requireContext().getApplicationContext().startActivity(widgetSettingsActivity);
         };
     }
 

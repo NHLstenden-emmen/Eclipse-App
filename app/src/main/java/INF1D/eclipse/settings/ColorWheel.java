@@ -42,6 +42,7 @@ public class ColorWheel extends AppCompatActivity {
             int[] rgb = envelope.getArgb();
             try {
                 JSONObject rgbJSON = new JSONObject()
+                        .put("type", "color")
                         .put("r", rgb[1])
                         .put("g", rgb[2])
                         .put("b", rgb[3]);

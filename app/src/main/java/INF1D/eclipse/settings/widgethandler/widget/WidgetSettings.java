@@ -85,7 +85,7 @@ public class WidgetSettings extends PreferenceFragmentCompat {
                 if(selectedWidget.hasParams()) {
                     setParamsField(selectedWidget);
                 } else {
-                    DraggableGridAdapter.getDataProvider().replaceItem(clickedPositionIndex, selectedWidget);
+                    DataProvider.mData.put(clickedPositionIndex, selectedWidget);
                 }
 
             }
@@ -105,7 +105,8 @@ public class WidgetSettings extends PreferenceFragmentCompat {
                     if(currentTileData.hasParams()) {
                         JSONArray jsonArray = new JSONArray(currentTileData.params);
                         pref.setOnPreferenceClickListener(paramOnclick(selectedWidget, jsonArray.getString(2)));
-                    }
+                    } else pref.setOnPreferenceClickListener(paramOnclick(selectedWidget, null));
+
 
                     preferenceCategory.addPreference(pref);
                 } catch (JSONException e) {
@@ -117,7 +118,7 @@ public class WidgetSettings extends PreferenceFragmentCompat {
 
     private Preference.OnPreferenceClickListener paramOnclick(DataProvider.TileData selectedWidget, String cityName) {
         return preference -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 EditText input = new EditText(getContext());
 
                 if(cityName != null) {
@@ -143,12 +144,10 @@ public class WidgetSettings extends PreferenceFragmentCompat {
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, weatherEndpoint, null, response -> {
                         try {
                             response.getInt("cityID");
-                            JSONArray jsonArray = new JSONArray()
-                                                    .put(response.getInt("cityID"))
-                                                    .put(input.getText());
+
                             dialog.dismiss();
                             Toast.makeText(getContext(), "City saved!", Toast.LENGTH_SHORT).show();
-                            selectedWidget.setParams(String.valueOf(jsonArray));
+                            selectedWidget.setType(selectedWidget.getType() + "_" + response.getInt("cityID"));
                             DraggableGridAdapter.getDataProvider().replaceItem(clickedPositionIndex, selectedWidget);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -165,7 +164,7 @@ public class WidgetSettings extends PreferenceFragmentCompat {
                         }
                     };
 
-                    Volley.newRequestQueue(Objects.requireNonNull(getContext())).add(jsonObjectRequest);
+                    Volley.newRequestQueue(requireContext()).add(jsonObjectRequest);
                 });
             return true;
         };

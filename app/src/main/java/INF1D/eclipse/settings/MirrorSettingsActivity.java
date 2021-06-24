@@ -1,18 +1,16 @@
 package INF1D.eclipse.settings;
 
-import INF1D.eclipse.R;
-import INF1D.eclipse.common.Mirror;
-import INF1D.eclipse.common.MirrorSocket;
-import INF1D.eclipse.common.PrefManager;
-import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +19,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+
+import INF1D.eclipse.R;
+import INF1D.eclipse.common.Mirror;
+import INF1D.eclipse.common.MirrorSocket;
+import INF1D.eclipse.common.PrefManager;
+import INF1D.eclipse.settings.widgethandler.data.DataProvider;
 
 public class MirrorSettingsActivity extends AppCompatActivity {
     private final String userSettingsEndpoint = "http://eclipse.serverict.nl/api/user_settings/search/";
@@ -112,7 +116,7 @@ public class MirrorSettingsActivity extends AppCompatActivity {
             userSettingsAPI = new HashMap<>();
         }
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             Mirror selectedMirror = (Mirror) getIntent().getSerializableExtra("selectedMirror");
             getSupportFragmentManager()
                     .beginTransaction()
